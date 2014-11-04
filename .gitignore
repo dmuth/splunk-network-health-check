@@ -1,0 +1,12 @@
+
+#
+# Ignore all Splunk packages
+#
+splunk*
+
+
+#
+# Vim droppings
+#
+*.swp
+
