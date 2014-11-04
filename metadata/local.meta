@@ -1,0 +1,34 @@
+[props/network-monitor/EXTRACT-packets_received]
+access = read : [ * ], write : [ * ]
+export = system
+owner = nobody
+version = 6.2.0
+modtime = 1415075229.790110000
+
+[props/network-monitor/EXTRACT-packets_sent]
+access = read : [ * ], write : [ * ]
+export = system
+owner = nobody
+version = 6.2.0
+modtime = 1415075289.268868000
+
+[props/network-monitor/EXTRACT-target_host]
+access = read : [ * ], write : [ * ]
+export = system
+owner = nobody
+version = 6.2.0
+modtime = 1415075292.759094000
+
+[props/network-monitor/EXTRACT-target_ip]
+access = read : [ * ], write : [ * ]
+export = system
+owner = nobody
+version = 6.2.0
+modtime = 1415075296.501055000
+
+[props/network-monitor/EXTRACT-time_min%2Ctime_avg%2Ctime_max%2Ctime_stddev]
+access = read : [ * ], write : [ * ]
+export = system
+owner = nobody
+version = 6.2.0
+modtime = 1415075299.334316000
