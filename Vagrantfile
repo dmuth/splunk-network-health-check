@@ -49,7 +49,7 @@ Vagrant.configure("2") do |config|
 		#
 		# Provision this instance
 		#
-		host.vm.provision "shell", path: "provision-vagrant.sh"
+		host.vm.provision "shell", path: "./bin/provision-vagrant.sh"
 
 	end
 
