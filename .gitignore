@@ -1,5 +1,10 @@
 
 #
+# Ignore Vagrant stuff
+#
+.vagrant/
+
+#
 # Ignore all Splunk packages
 #
 splunk*
