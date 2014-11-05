@@ -32,3 +32,73 @@ export = system
 owner = nobody
 version = 6.2.0
 modtime = 1415075299.334316000
+
+[props/network-monitor-long/EXTRACT-packets_received]
+access = read : [ * ], write : [ * ]
+export = system
+owner = nobody
+version = 6.2.0
+modtime = 1415155467.305113000
+
+[props/network-monitor-long/EXTRACT-packets_sent]
+access = read : [ * ], write : [ * ]
+export = system
+owner = nobody
+version = 6.2.0
+modtime = 1415155491.025349000
+
+[props/network-monitor-long/EXTRACT-target_host]
+access = read : [ * ], write : [ * ]
+export = system
+owner = nobody
+version = 6.2.0
+modtime = 1415155493.256618000
+
+[props/network-monitor-long/EXTRACT-target_ip]
+access = read : [ * ], write : [ * ]
+export = system
+owner = nobody
+version = 6.2.0
+modtime = 1415155495.640892000
+
+[props/network-monitor-long/EXTRACT-target_ip_long]
+access = read : [ * ], write : [ * ]
+export = system
+owner = nobody
+version = 6.2.0
+modtime = 1415155497.889378000
+
+[props/network-monitor-long/EXTRACT-time_min%2Ctime_avg%2Ctime_max%2Ctime_stddev]
+access = read : [ * ], write : [ * ]
+export = system
+owner = nobody
+version = 6.2.0
+modtime = 1415155500.009345000
+
+[props/network-monitor/EVAL-packet_loss]
+access = read : [ * ], write : [ * ]
+export = system
+owner = nobody
+version = 6.2.0
+modtime = 1415155782.935440000
+
+[props/network-monitor/EVAL-packet_loss_pct]
+access = read : [ * ], write : [ * ]
+export = system
+owner = nobody
+version = 6.2.0
+modtime = 1415155892.724261000
+
+[props/network-monitor-long/EVAL-packet_loss]
+access = read : [ * ], write : [ * ]
+export = system
+owner = nobody
+version = 6.2.0
+modtime = 1415155894.923388000
+
+[props/network-monitor-long/EVAL-packet_loss_pct]
+access = read : [ * ], write : [ * ]
+export = system
+owner = nobody
+version = 6.2.0
+modtime = 1415155897.002414000
