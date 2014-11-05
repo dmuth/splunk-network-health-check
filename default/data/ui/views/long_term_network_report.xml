@@ -4,7 +4,7 @@
     <panel>
       <chart>
         <search>
-          <query>index=* sourcetype=network-monitor-long earliest=-1d | timechart span=5m avg(packet_loss_pct) AS "% Packet Loss"</query>
+          <query>index=main sourcetype=network-monitor-long earliest=-1d | timechart span=5m avg(packet_loss_pct) AS "% Packet Loss"</query>
           <earliest>-1d</earliest>
           <latest>now</latest>
         </search>
@@ -37,7 +37,7 @@
     <panel>
       <chart>
         <search>
-          <query>index=* sourcetype=network-monitor-long earliest=-1d | timechart span=5m avg(min) AS Min, avg(max) AS Max, avg(avg) AS Average, avg(stddev) AS Stddev</query>
+          <query>index=main sourcetype=network-monitor-long earliest=-1d | timechart span=5m avg(min) AS Min, avg(max) AS Max, avg(avg) AS Average, avg(stddev) AS Stddev</query>
           <earliest>-1d</earliest>
           <latest>now</latest>
         </search>
