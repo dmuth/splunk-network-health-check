@@ -17,12 +17,8 @@ echo "# Hit ^C to exit."
 echo "# Be sure to re-enable ICMP after existing!"
 echo "#"
 
-#
-# I recommend prime numbers so that the results change slightly for each interval.
-#
-NUM_SECS=3
-#NUM_SECS=13
-#NUM_SECS=79
+NUM_SECS_ALLOW=10
+NUM_SECS_DROP=2
 
 
 while true
@@ -30,15 +26,15 @@ do
 
 	./icmp_drop.sh
 	echo "#"
-	echo "# Sleeping for ${NUM_SECS} seconds..."
+	echo "# Sleeping for ${NUM_SECS_DROP} seconds..."
 	echo "#"
-	sleep $NUM_SECS
+	sleep $NUM_SECS_DROP
 
 	./icmp_allow.sh
 	echo "#"
-	echo "# Sleeping for ${NUM_SECS} seconds..."
+	echo "# Sleeping for ${NUM_SECS_ALLOW} seconds..."
 	echo "#"
-	sleep $NUM_SECS
+	sleep $NUM_SECS_ALLOW
 
 done
 
