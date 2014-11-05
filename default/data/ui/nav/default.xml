@@ -1,0 +1,9 @@
+<nav>
+  <collection label="Dashboards">
+    <view name="mydashboard" />
+  </collection>
+  <collection label="Search views">
+    <view name="mysearchview" />
+    <a href="http://google.com">Google</a>
+  </collection>
+</nav>
