@@ -1,0 +1,15 @@
+#!/bin/bash
+#
+# Ping a specified host.
+# The results will be reported to (and stored in) Splunk.
+#
+
+TARGET="google.com"
+
+NUM_PINGS=600
+NUM_PINGS=30 # Debugging
+
+ping -c ${NUM_PINGS} -q ${TARGET}
+
+
+
