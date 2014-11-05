@@ -9,8 +9,20 @@
   </collection>
   -->
 
-  <collection label="All Views">
-     <view source="all" />
-  </collection>
+  <collection label="Extra">
 
+    <collection label="All Views">
+       <view source="all" />
+    </collection>
+
+    <collection label="Reports">
+      <saved name="Short Term Search" />
+      <saved name="Long Term Search" />
+      <view name="reports" />
+    </collection>
+  
+    <view name="search" />
+
+  </collection>
+  
 </nav>
