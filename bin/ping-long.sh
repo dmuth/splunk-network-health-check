@@ -6,8 +6,8 @@
 
 TARGET="google.com"
 
-NUM_PINGS=600
-NUM_PINGS=30 # Debugging
+NUM_PINGS=300
+#NUM_PINGS=30 # Debugging
 
 ping -c ${NUM_PINGS} -q ${TARGET}
 

@@ -5,9 +5,10 @@
 #
 
 TARGET="google.com"
-#NUM_PINGS=3 # Debugging
-NUM_PINGS=10 # Debugging
 
+
+#NUM_PINGS=3 # Debugging
+NUM_PINGS=10
 
 ping -c ${NUM_PINGS} -q ${TARGET}
 
