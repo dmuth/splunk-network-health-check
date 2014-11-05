@@ -24,7 +24,7 @@ else
 	#
 	# Assume Linux
 	#
-	ping -t ${WAIT_TIME} -q ${TARGET}
+	ping -w ${WAIT_TIME} -q ${TARGET}
 
 fi
 
