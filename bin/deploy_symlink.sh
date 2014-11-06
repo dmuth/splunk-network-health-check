@@ -19,6 +19,7 @@ fi
 
 SPLUNK_ROOT=$1
 TARGET=${SPLUNK_ROOT}/etc/apps
+FILENAME="Network-Monitor"
 
 #
 # Change into the parent directory of this script
@@ -31,7 +32,16 @@ DIR=`pwd`
 # Now make a symlink under the apps directory to this directory
 #
 pushd $TARGET > /dev/null
-ln -sf $DIR Network-Monitor
+
+if test -r $FILENAME
+then
+	echo "# " 
+	echo "# File ${TARGET}/${FILENAME} already exists. Aborting." 
+	echo "# " 
+	exit
+fi
+
+ln -sf $DIR $FILENAME
 
 echo "# "
 echo "# Created a symlink to the application from ${TARGET}"
