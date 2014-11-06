@@ -34,7 +34,9 @@ There will be a menu across the top that lets you run reports.
 
 ## How does it work?
 
-At its core, this app uses not one, but **two** scripts to run ping.  The first script (ping.sh) pings google.com for 10 seconds at a time and then returns the results.  The second script (ping-long.sh) pings google.com for 5 minutes at a time and then returns the results.  The reason for these two separate scripts is because the first script is useful seeing what short-term behavior of your Internet connection is, but there can be a pause of as much as 1 second between invocations of the script.  ping-long.sh mitigates that by running for a much longer interval and can be used to see how your connection performed over a longer period of time.
+At its core, this app uses not one, but **two** scripts to run ping.  The first script (ping.sh) pings google.com for 10 seconds at a time and then returns the results.  The second script (ping-long.sh) pings google.com for 5 minutes at a time and then returns the results.  
+
+The reason for these two separate scripts is because the first script is useful seeing what short-term behavior of your Internet connection is, but there can be a pause of as much as 1 second between invocations of the script.  ping-long.sh mitigates that by running for a much longer interval and can be used to see how your connection performed over a longer period of time.
 
 
 ### Why ping google.com?
