@@ -52,6 +52,15 @@ In the future I'll look into adding a configuration page so that the host to pin
 This has been written for (and tested on) Splunk 6.2
 
 
+## Development
+
+This repo includes a `Vagrantfile`.  If you have Vagrant installed, simply type `vagrant up`, and an 
+instance of Ubuntu 12.04 LTS will be created and Splunk will be installed, provided a `splunk.deb` 
+file is present in the local directory.
+
+Once up and running, type `vagrant ssh` to SSH into the box, then type `sudo /opt/splunk/bin/splunk start`, 
+answer the license prompt, and your copy of Splunk will be up and running on [http://localhost:8000/](http://localhost:8000/)
+
 
 
 ## Questions, comments, abuse, and offers of employment
