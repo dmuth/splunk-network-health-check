@@ -64,6 +64,7 @@ This has been written for (and tested on) Splunk 6.2
 ## TODO
 
 Things I might implement in the future:
+- Put the output of ping into a separate index (currently in main)
 - App configuration for which host to ping
 - Support for multiple hosts (border routers, etc.)
 - Traceroute functionality that pings each host on the way (perhaps by using mtr?)
