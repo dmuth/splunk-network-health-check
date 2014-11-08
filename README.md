@@ -16,6 +16,9 @@ Splunk is an amazing app that lets you monitor your logfiles and perform analyti
 
 ## Installation
 
+This assumes you are running this on a machine with Vagrant and Virtual box installed.  If you are running this on a machine 
+that has already been created, simply remove the references to Vagrant.
+
 - Download this app:
 	- `git clone git@github.com:dmuth/splunk-network-monitor.git`
 - Start Vagrant with `vagrant up`
@@ -28,6 +31,7 @@ Splunk is an amazing app that lets you monitor your logfiles and perform analyti
 	- `sudo /vagrant/bin/deploy.sh $SPLUNK_ROOT` if you'd like to have this directory copied into $SPLUNK_HOME/Network-Monitor/
 - Restart Splunk:
     - `sudo $SPLUNK_HOME/bin/splunk restart`
+- Log into Splunk on [http://localhost:8000/](http://localhost:8000/) and click "App: Network Monitor" to see your connectivity reports.
 
 
 ## Usage
@@ -57,17 +61,7 @@ In the future I'll look into adding a configuration page so that the host to pin
 This has been written for (and tested on) Splunk 6.2
 
 
-## Development
-
-This repo includes a `Vagrantfile`.  If you have Vagrant installed, simply type `vagrant up`, and an 
-instance of Ubuntu 14.04 LTS will be created and Splunk will be installed, provided a `splunk.deb` 
-file is present in the local directory.
-
-Once up and running, type `vagrant ssh` to SSH into the box, then type `sudo /opt/splunk/bin/splunk start`, 
-answer the license prompt, and your copy of Splunk will be up and running on [http://localhost:8000/](http://localhost:8000/)
-
-
-
+    
 ## Questions, comments, abuse, and offers of employment
 
 Hit me up via email at dmuth@dmuth.org.
