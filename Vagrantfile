@@ -21,8 +21,8 @@ Vagrant.configure("2") do |config|
 	#
 	config.vm.define :main do |host|
 
-		host.vm.box = "precise64"
-		host.vm.box_url = "http://files.vagrantup.com/precise64.box"
+		host.vm.box = "trusty64"
+		host.vm.box_url = "https://oss-binaries.phusionpassenger.com/vagrant/boxes/latest/ubuntu-14.04-amd64-vbox.box"
 		host.vm.hostname = "main"
 		host.vm.network "private_network", ip: "10.0.10.101"
 
