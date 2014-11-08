@@ -60,6 +60,9 @@ In the future I'll look into adding a configuration page so that the host to pin
 
 This has been written for (and tested on) Splunk 6.2
 
+Splunk 6.2, in turn, has been tested on Ubuntu 14.04 LTS and Macintosh OS/X 10.8.5.
+
+
 
 ## TODO
 
