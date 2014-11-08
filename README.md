@@ -77,4 +77,4 @@ Things I might implement in the future:
     
 ## Questions, comments, abuse, and offers of employment
 
-Hit me up via email at dmuth@dmuth.org.
+Hit me up via [email](mailto:dmuth@dmuth.org), or [Facebook](http://www.facebook.com/dmuth).
