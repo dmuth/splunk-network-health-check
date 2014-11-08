@@ -61,6 +61,15 @@ In the future I'll look into adding a configuration page so that the host to pin
 This has been written for (and tested on) Splunk 6.2
 
 
+## TODO
+
+Things I might implement in the future:
+- App configuration for which host to ping
+- Support for multiple hosts (border routers, etc.)
+- Traceroute functionality that pings each host on the way (perhaps by using mtr?)
+- Dropdown list on the dashboards to select the time interval
+
+
     
 ## Questions, comments, abuse, and offers of employment
 
