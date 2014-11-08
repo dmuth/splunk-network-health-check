@@ -60,7 +60,7 @@ In the future I'll look into adding a configuration page so that the host to pin
 
 This has been written for (and tested on) Splunk 6.2
 
-Splunk 6.2, in turn, has been tested on Ubuntu 14.04 LTS and Macintosh OS/X 10.8.5.
+Splunk 6.2, in turn, has been tested on Ubuntu 14.04 LTS and Macintosh OS/X 10.8.5.  **If you would like to run this in Windows**, your best bet is just to set up Ubuntu 14.04 LTS in a VM.  256 Megs of RAM should be sufficient.
 
 
 
