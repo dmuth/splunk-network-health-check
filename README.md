@@ -25,7 +25,7 @@ that has already been created, simply remove the references to Vagrant.
 - SSH into the Vagrant instance with `vagrant ssh`
 - Install Splunk with `sudo /vagrant/bin/install_splunk.sh`
     - Agree to the license and then watch Spkunk start
-    - Not that you'll need a Splunk .deb file named `splunk.deb` in the current directory
+    - **Note:** that you'll need a Splunk .deb file named `splunk.deb` in the current directory
 - Deploy this app:
 	- `sudo /vagrant/bin/deploy_symlink.sh $SPLUNK_ROOT` if you'd like to have a symlink pointing to this directory
 	- `sudo /vagrant/bin/deploy.sh $SPLUNK_ROOT` if you'd like to have this directory copied into $SPLUNK_HOME/Network-Monitor/
