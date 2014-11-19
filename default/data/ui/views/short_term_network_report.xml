@@ -1,5 +1,5 @@
 <form>
-  <label>Short Term Network Report</label>
+  <label>Network Report</label>
   <fieldset submitButton="false">
     <input type="time" token="timespan" searchWhenChanged="true">
       <label>Time Period</label>
