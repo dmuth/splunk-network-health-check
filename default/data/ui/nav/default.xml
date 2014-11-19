@@ -1,7 +1,6 @@
 <nav>
 
   <view name="short_term_network_report" default="true" />
-  <view name="long_term_network_report" />
 
   <!--
   <collection label="Others">
@@ -17,7 +16,6 @@
 
     <collection label="Reports">
       <saved name="Short Term Search" />
-      <saved name="Long Term Search" />
       <view name="reports" />
     </collection>
   
