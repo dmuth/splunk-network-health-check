@@ -8,13 +8,21 @@
         <latest>now</latest>
       </default>
     </input>
+    <input type="dropdown" token="span" searchWhenChanged="true">
+      <label>Chart timespan</label>
+      <default>10s</default>
+      <choice value="10s">10s</choice>
+      <choice value="5m">5m</choice>
+      <choice value="1h">1h</choice>
+      <choice value="1d">1d</choice>
+    </input>
   </fieldset>
   <row>
     <panel>
       <chart>
         <title>Packet Loss</title>
         <search>
-          <query>index=main sourcetype=network-monitor  | timechart span=15s avg(packet_loss_pct) AS "% Packet Loss"</query>
+          <query>index=main sourcetype=network-monitor  | timechart span=$span$ avg(packet_loss_pct) AS "% Packet Loss"</query>
           <earliest>$timespan.earliest$</earliest>
           <latest>$timespan.latest$</latest>
         </search>
@@ -48,7 +56,7 @@
       <chart>
         <title>Latency</title>
         <search>
-          <query>index=main sourcetype=network-monitor | timechart span=15s avg(min) AS Min, avg(max) AS Max, avg(avg) AS Average, avg(stddev) AS Stddev</query>
+          <query>index=main sourcetype=network-monitor | timechart span=$span$ avg(min) AS Min, avg(max) AS Max, avg(avg) AS Average, avg(stddev) AS Stddev</query>
           <earliest>$timespan.earliest$</earliest>
           <latest>$timespan.latest$</latest>
         </search>
