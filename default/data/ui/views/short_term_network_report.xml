@@ -1,13 +1,22 @@
-<dashboard>
+<form>
   <label>Short Term Network Report</label>
+  <fieldset submitButton="false">
+    <input type="time" token="timespan" searchWhenChanged="true">
+      <label>Time Period</label>
+      <default>
+        <earliest>-15m</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+  </fieldset>
   <row>
     <panel>
       <chart>
         <title>Packet Loss</title>
         <search>
           <query>index=main sourcetype=network-monitor  | timechart span=15s avg(packet_loss_pct) AS "% Packet Loss"</query>
-          <earliest>rt-15m</earliest>
-          <latest>rtnow</latest>
+          <earliest>$timespan.earliest$</earliest>
+          <latest>$timespan.latest$</latest>
         </search>
         <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
         <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
@@ -40,8 +49,8 @@
         <title>Latency</title>
         <search>
           <query>index=main sourcetype=network-monitor | timechart span=15s avg(min) AS Min, avg(max) AS Max, avg(avg) AS Average, avg(stddev) AS Stddev</query>
-          <earliest>rt-15m</earliest>
-          <latest>rtnow</latest>
+          <earliest>$timespan.earliest$</earliest>
+          <latest>$timespan.latest$</latest>
         </search>
         <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
         <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
@@ -68,4 +77,4 @@
       </chart>
     </panel>
   </row>
-</dashboard>
+</form>
