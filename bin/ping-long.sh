@@ -14,7 +14,7 @@ WAIT_TIME=300
 # -w/-T specifies how long to wait.
 # That way, if we're seeing 100% packet loss, the ping command still exits after the appropriate amount of time.
 #
-if test ${OSTYPE} == "darwin12" -o ${OSTYPE} == "darwin13" -o ${OSTYPE} == "darwin10.0"
+if test ${OSTYPE} == "darwin12" -o ${OSTYPE} == "darwin13" -o ${OSTYPE} == "darwin14" -o ${OSTYPE} == "darwin10.0"
 then
 	#
 	# We're on OS/X!
