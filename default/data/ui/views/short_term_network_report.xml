@@ -12,6 +12,7 @@
       <label>Chart timespan</label>
       <default>10s</default>
       <choice value="10s">10s</choice>
+      <choice value="1m">1m</choice>
       <choice value="5m">5m</choice>
       <choice value="1h">1h</choice>
       <choice value="1d">1d</choice>
