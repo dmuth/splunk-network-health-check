@@ -12,10 +12,18 @@
       <label>Chart timespan</label>
       <default>10s</default>
       <choice value="10s">10s</choice>
+      <choice value="15s">15s</choice>
       <choice value="1m">1m</choice>
       <choice value="5m">5m</choice>
+      <choice value="10m">10m</choice>
       <choice value="1h">1h</choice>
       <choice value="1d">1d</choice>
+    </input>
+    <input type="dropdown" token="datatype" searchWhenChanged="true">
+      <label>Data Type</label>
+      <choice value="network-monitor">Short (every 10s)</choice>
+      <choice value="network-monitor-long">Long (every 5m)</choice>
+      <default>network-monitor</default>
     </input>
   </fieldset>
   <row>
@@ -23,7 +31,7 @@
       <chart>
         <title>Packet Loss</title>
         <search>
-          <query>index=main sourcetype=network-monitor  | timechart span=$span$ avg(packet_loss_pct) AS "% Packet Loss"</query>
+          <query>index=main sourcetype=$datatype$  | timechart span=$span$ avg(packet_loss_pct) AS "% Packet Loss"</query>
           <earliest>$timespan.earliest$</earliest>
           <latest>$timespan.latest$</latest>
         </search>
@@ -57,7 +65,7 @@
       <chart>
         <title>Latency</title>
         <search>
-          <query>index=main sourcetype=network-monitor | timechart span=$span$ avg(min) AS Min, avg(max) AS Max, avg(avg) AS Average, avg(stddev) AS Stddev</query>
+          <query>index=main sourcetype=$datatype$ | timechart span=$span$ avg(min) AS Min, avg(max) AS Max, avg(avg) AS Average, avg(stddev) AS Stddev</query>
           <earliest>$timespan.earliest$</earliest>
           <latest>$timespan.latest$</latest>
         </search>
