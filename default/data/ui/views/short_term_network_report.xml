@@ -41,7 +41,6 @@
         <option name="charting.axisTitleY.visibility">visible</option>
         <option name="charting.axisTitleY2.visibility">visible</option>
         <option name="charting.axisX.scale">linear</option>
-        <option name="charting.axisY.maximumNumber">100</option>
         <option name="charting.axisY.scale">linear</option>
         <option name="charting.axisY2.enabled">false</option>
         <option name="charting.axisY2.scale">inherit</option>
@@ -57,6 +56,8 @@
         <option name="charting.layout.splitSeries">0</option>
         <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
         <option name="charting.legend.placement">right</option>
+        <option name="charting.axisY.minimumNumber">0</option>
+        <option name="charting.axisY.maximumNumber">100</option>
       </chart>
     </panel>
   </row>
