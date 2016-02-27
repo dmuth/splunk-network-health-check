@@ -35,6 +35,12 @@ then
 		echo "# Installing Splunk!"
 		echo "# "
 		dpkg -i ${PKG}
+
+		echo "# "
+		echo "# Starting Splunk..."
+		echo "# "
+		/opt/splunk/bin/splunk start --accept-license
+
 	fi
 
 else
@@ -60,5 +66,27 @@ then
 	cd /var > /dev/null
 	ln -s /opt/splunk
 fi
+
+
+if test ! -d "/var/splunk/etc/apps/network-monitor"
+then
+	echo "# "
+	echo "# Now installing Splunk network monitor and restarting Splunk..."
+	echo "# "
+	cd /var/splunk/etc/apps/
+	ln -s /vagrant network-monitor
+	/var/splunk/bin/splunk restart
+fi
+
+echo "# "
+echo "# To connect to Splunk: "
+echo "# "
+echo "# http://localhost:8000/ "
+echo "# "
+echo "# To view the Network Monitor: "
+echo "# "
+echo "# http://localhost:8000/en-US/app/network-monitor/"
+echo "# "
+
 
 
