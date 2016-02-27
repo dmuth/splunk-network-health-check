@@ -9,9 +9,17 @@
 set -e
 
 #
-# Restart syslog so that it gets the name hostname
+# Restart syslog so that it gets the hostname
 #
-service rsyslog restart
+FILE="/var/local/vagrant-syslog"
+if test ! -f $FILE
+then
+	echo "# "
+	echo "# Restarting syslog to get the correct hostname..."
+	echo "# "
+	service rsyslog restart
+fi
+touch $FILE
 
 
 #
@@ -23,16 +31,19 @@ then
 
 	if test ! -f /opt/splunk/bin/splunk
 	then
+		echo "# "
+		echo "# Installing Splunk!"
+		echo "# "
 		dpkg -i ${PKG}
 	fi
 
 else
-	echo "#"
-	echo "# Missing file '${PKG}'!"
-	echo "#"
-	echo "# Need a copy of Splunk Enterprise? A free copy can be downloaded "
-	echo "# from http://www.splunk.com/download"
-	echo "#"
+	echo "!"
+	echo "! Missing file '${PKG}'!"
+	echo "!"
+	echo "! Need a copy of Splunk Enterprise? A free copy can be downloaded "
+	echo "! from http://www.splunk.com/download"
+	echo "!"
 	exit 1
 
 fi
@@ -43,7 +54,10 @@ fi
 #
 if test ! -d /var/splunk
 then
-	pushd /var > /dev/null
+	echo "# "
+	echo "# Creating symlink for Splunk in /var/splunk/..."
+	echo "# "
+	cd /var > /dev/null
 	ln -s /opt/splunk
 fi
 
