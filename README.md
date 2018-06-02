@@ -21,7 +21,7 @@ Data will be persisted in the `data/` directory between container runs.
 
 ### Default Targets
 
-These are the default targets, but can be overridden with `-e TARGET=...`: 
+These are the default targets, but can be overridden with `-e TARGETS=...`: 
 
 - google.com
 - 8.8.8.8 (Google's DNS Resolver)
@@ -33,7 +33,7 @@ DNS is flaky, it won't impact either those, and those two IP addresses are owned
 
 ## More detailed options
 
-- Want to specific specific hosts to ping? `-e "TARGET=google.com cnn.com 8.8.8.8 1.1.1.1"` is the way to do that
+- Want to specific specific hosts to ping? `-e "TARGETS=google.com cnn.com 8.8.8.8 1.1.1.1"` is the way to do that
 - Want to get an interactive shell? Before sure to specific `-e INTERACTIVE=1 -ti` in the `docker run` command
 - Want to get your local timezone? Use something similar to `-e TZ=EST5EDT` in the `docker run` command.
 - Want to set a non-default password? Use `-e SPLUNK_PASSWORD=password` to do that.
