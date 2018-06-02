@@ -8,6 +8,20 @@
 # 
 set -e
 
+SPLUNK_PASSWORD="${SPLUNK_PASSWORD:-password}"
+
+
+#
+# Set our default password
+#
+pushd /opt/splunk/etc/system/local/ >/dev/null
+
+cat user-seed.conf.in | sed -e "s/%password%/${SPLUNK_PASSWORD}/" > user-seed.conf
+cat web.conf.in | sed -e "s/%password%/${SPLUNK_PASSWORD}/" > web.conf
+
+popd > /dev/null
+
+
 #
 # Start Splunk
 #

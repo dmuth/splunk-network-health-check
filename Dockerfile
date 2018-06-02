@@ -37,8 +37,8 @@ RUN apt-get update && apt-get install -y wget sudo \
 #
 # Copy in some Splunk configuration
 #
-COPY files/user-seed.conf /opt/splunk/etc/system/local/
-COPY files/web.conf /opt/splunk/etc/system/local
+COPY files/user-seed.conf /opt/splunk/etc/system/local/user-seed.conf.in
+COPY files/web.conf /opt/splunk/etc/system/local/web.conf.in
 COPY files/splunk-launch.conf /opt/splunk/etc/
 
 #

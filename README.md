@@ -21,6 +21,8 @@ Data will be persisted in the `data/` directory between container runs.
 
 - Want to get an interactive shell? Before sure to specific `-e INTERACTIVE=1 -ti` in the `docker run` command
 - Want to get your local timezone? Use something similar to `-e TZ=EST5EDT` in the `docker run` command.
+- Want to set a non-default password? Use `-e SPLUNK_PASSWORD=password` to do that.
+   - Note that passwords in Splunk must be at least 8 characters long.
 
 
 ## What's Splunk?
@@ -33,6 +35,13 @@ Splunk is an amazing app that lets you monitor your logfiles and perform analyti
 At its core, this app uses not one, but **two** scripts to run ping.  The first script (`ping.sh`) pings google.com for 10 seconds at a time and then returns the results.  The second script (`ping-long.sh`) pings google.com for 5 minutes at a time and then returns the results.  
 
 The reason for these two separate scripts is because the first script is useful seeing what short-term behavior of your Internet connection is, but there can be a pause of as much as 1 second between invocations of the script.  `ping-long.sh` mitigates that by running for a much longer interval and can be used to see how your connection performed over a longer period of time.
+
+
+## Security Concerns
+
+**Please** set a password if you are deploying this on anything other than a personal device.
+That is done with `-e SPLUNK_PASSWORD=<password>`.
+
 
 
 ### Why ping google.com?
