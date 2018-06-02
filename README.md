@@ -10,9 +10,11 @@ docker run --rm -p 8000:8000 -v $(pwd)/data:/opt/splunk/var/lib/splunk/defaultdb
 
 You can now go to http://localhost:8000/ and get graphs like these:
 
-![Short Term Network Report](./img/short-term-network-report.png) ![Long Term Network Report](./img/long-term-network-report.png)
 
-Data will be persisted in the data/ directory between container runs.
+<img src="./img/short-term-network-report.png" /> <img src="./img/long-term-network-report.png" />
+
+
+Data will be persisted in the `data/` directory between container runs.
 
 
 ## More detailed options
