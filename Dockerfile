@@ -41,14 +41,13 @@ RUN apt-get update && apt-get install -y wget procps fping less iptables \
 COPY files/splunk-launch.conf /opt/splunk/etc/
 COPY files/user-seed.conf /opt/splunk/etc/system/local/user-seed.conf.in
 COPY files/ui-prefs.conf /opt/splunk/etc/system/local/ui-prefs.conf
-COPY files/user-prefs.conf /opt/splunk/etc/system/local/user-prefs.conf
+COPY files/user-prefs.conf /opt/splunk/etc/apps/user-prefs/local/user-prefs.conf
 COPY files/web.conf /opt/splunk/etc/system/local/web.conf.in
 
 #
 # Copy in the app
 # 
 COPY Network-Monitor/ /opt/splunk/etc/apps/Network-Monitor/
-COPY files/user-prefs.conf /opt/splunk/etc/apps/user-prefs/local/user-prefs.conf
 
 #
 # Copy in our entry script which will install Splunk
