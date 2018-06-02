@@ -41,6 +41,7 @@ RUN apt-get update && apt-get install -y wget sudo \
 #
 COPY files/user-seed.conf /opt/splunk/etc/system/local/
 COPY files/web.conf /opt/splunk/etc/system/local
+COPY files/splunk-launch.conf /opt/splunk/etc/
 
 #
 # Copy in the app
@@ -58,8 +59,10 @@ RUN chmod +x /entrypoint.sh
 #
 EXPOSE 8000/tcp
 
-# Configurations folder, var folder for everything (indexes, logs, kvstore)
-VOLUME [ "/opt/splunk/var" ]
+#
+# Folder for our data
+#
+VOLUME [ "/opt/splunk/var/lib/splunk/defaultdb" ]
 
 CMD ["/entrypoint.sh"]
 
