@@ -43,6 +43,16 @@ The reason for these two separate scripts is because the first script is useful 
 That is done with `-e SPLUNK_PASSWORD=<password>`.
 
 
+## Development
+
+Here's how to do development:
+
+```
+docker build . -t splunk && docker run --rm --name splunk -e INTERACTIVE=1 -ti -p 8000:8000 -v $(pwd)/data:/opt/splunk/var/lib/splunk/defaultdb  -e TZ=EST5EDT  splunk
+docker tag splunk dmuth1/splunk-network-monitor
+docker push dmuth1/splunk-network-monitor
+```
+
 
 ### Why ping google.com?
 
