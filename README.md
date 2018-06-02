@@ -1,6 +1,6 @@
 # Splunk Network Monitor
 
-This app will monitoring your Internet connection by pinging Google and creating nice graphs.
+This app will monitor your Internet connection by pinging Google and creating nice graphs.
 
 60 second installation:
 
