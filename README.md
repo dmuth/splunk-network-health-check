@@ -14,7 +14,7 @@ docker logs -f splunk
 You can now go to http://localhost:8000/ and get graphs like these:
 
 
-<img src="./img/network-report.png" width="400" /> 
+<img src="./img/network-report.png" width="500" /> 
 
 
 Data will be persisted in the `data/` directory between container runs.
