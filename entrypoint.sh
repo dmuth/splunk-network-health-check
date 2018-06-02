@@ -18,6 +18,10 @@ echo "# If your data is not persisted, be sure you ran this container with: "
 echo "# "
 echo "#		-v \$(pwd)/data:/opt/splunk/var/lib/splunk/defaultdb"
 echo "# "
+echo "# Timezone in UTC?  Specify your timezone with -e, such as:"
+echo "# "
+echo "# 	-e TZ=EST5EDT"
+echo "# "
 
 
 #
