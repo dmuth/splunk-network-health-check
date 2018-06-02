@@ -43,6 +43,11 @@ COPY files/user-seed.conf /opt/splunk/etc/system/local/
 COPY files/web.conf /opt/splunk/etc/system/local
 
 #
+# Copy in the app
+# 
+COPY Network-Monitor/ /opt/splunk/etc/apps/Network-Monitor/
+
+#
 # Copy in our entry script which will install Splunk
 #
 COPY entrypoint.sh /entrypoint.sh
