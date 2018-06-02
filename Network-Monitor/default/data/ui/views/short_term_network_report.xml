@@ -19,19 +19,23 @@
       <choice value="1h">1h</choice>
       <choice value="1d">1d</choice>
     </input>
-    <input type="dropdown" token="datatype" searchWhenChanged="true">
-      <label>Data Type</label>
-      <choice value="network-monitor">Short (every 10s)</choice>
-      <choice value="network-monitor-long">Long (every 5m)</choice>
-      <default>network-monitor</default>
+    <input type="dropdown" token="target">
+      <label>Target</label>
+      <fieldForLabel>target</fieldForLabel>
+      <fieldForValue>target</fieldForValue>
+      <search>
+        <query>index=main sourcetype="network-monitor" | chart count by target |fields target |sort target</query>
+        <earliest>-4h@m</earliest>
+        <latest>now</latest>
+      </search>
     </input>
   </fieldset>
   <row>
     <panel>
+      <title>Packet Loss</title>
       <chart>
-        <title>Packet Loss</title>
         <search>
-          <query>index=main sourcetype=$datatype$  | timechart span=$span$ avg(packet_loss_pct) AS "% Packet Loss"</query>
+          <query>index=main sourcetype=network-monitor target=$target$ | timechart span=$span$ avg(packet_loss_pct) AS "% Packet Loss"</query>
           <earliest>$timespan.earliest$</earliest>
           <latest>$timespan.latest$</latest>
         </search>
@@ -41,8 +45,10 @@
         <option name="charting.axisTitleY.visibility">visible</option>
         <option name="charting.axisTitleY2.visibility">visible</option>
         <option name="charting.axisX.scale">linear</option>
+        <option name="charting.axisY.maximumNumber">100</option>
+        <option name="charting.axisY.minimumNumber">0</option>
         <option name="charting.axisY.scale">linear</option>
-        <option name="charting.axisY2.enabled">false</option>
+        <option name="charting.axisY2.enabled">0</option>
         <option name="charting.axisY2.scale">inherit</option>
         <option name="charting.chart">area</option>
         <option name="charting.chart.bubbleMaximumSize">50</option>
@@ -56,17 +62,16 @@
         <option name="charting.layout.splitSeries">0</option>
         <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
         <option name="charting.legend.placement">right</option>
-        <option name="charting.axisY.minimumNumber">0</option>
-        <option name="charting.axisY.maximumNumber">100</option>
+        <option name="refresh.display">progressbar</option>
       </chart>
     </panel>
   </row>
   <row>
     <panel>
+      <title>Latency</title>
       <chart>
-        <title>Latency</title>
         <search>
-          <query>index=main sourcetype=$datatype$ | timechart span=$span$ avg(min) AS Min, avg(max) AS Max, avg(avg) AS Average, avg(stddev) AS Stddev</query>
+          <query>index=main sourcetype=network-monitor target=$target$ | timechart span=$span$ avg(time_min) AS Min, avg(time_max) AS Max, avg(time_avg) AS Average</query>
           <earliest>$timespan.earliest$</earliest>
           <latest>$timespan.latest$</latest>
         </search>
@@ -78,7 +83,7 @@
         <option name="charting.axisTitleY2.visibility">visible</option>
         <option name="charting.axisX.scale">linear</option>
         <option name="charting.axisY.scale">linear</option>
-        <option name="charting.axisY2.enabled">false</option>
+        <option name="charting.axisY2.enabled">0</option>
         <option name="charting.axisY2.scale">inherit</option>
         <option name="charting.chart">line</option>
         <option name="charting.chart.bubbleMaximumSize">50</option>
@@ -92,6 +97,7 @@
         <option name="charting.layout.splitSeries">0</option>
         <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
         <option name="charting.legend.placement">right</option>
+        <option name="refresh.display">progressbar</option>
       </chart>
     </panel>
   </row>

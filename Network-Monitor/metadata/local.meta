@@ -105,8 +105,8 @@ modtime = 1415155897.002414000
 
 [views/short_term_network_report]
 owner = admin
-version = 6.2.0
-modtime = 1416365126.586131000
+version = 7.1.1
+modtime = 1527966426.278884000
 
 [views/long_term_network_report]
 owner = admin
@@ -116,3 +116,17 @@ modtime = 1415161145.657524000
 [nav/default]
 version = 6.2.0
 modtime = 1416363313.313902000
+
+[props/network-monitor/EXTRACT-target%2Cpackets_sent%2Cpackets_received]
+access = read : [ * ], write : [ * ]
+export = system
+owner = nobody
+version = 7.1.1
+modtime = 1527966074.821042000
+
+[props/network-monitor/EXTRACT-time_min%2Ctime_avg%2Ctime_max]
+access = read : [ * ], write : [ * ]
+export = system
+owner = nobody
+version = 7.1.1
+modtime = 1527966079.190430000

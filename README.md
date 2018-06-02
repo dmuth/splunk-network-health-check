@@ -16,9 +16,21 @@ You can now go to http://localhost:8000/ and get graphs like these:
 
 Data will be persisted in the `data/` directory between container runs.
 
+### Default Targets
+
+These are the default targets, but can be overridden with `-e TARGET=...`: 
+
+- google.com
+- 8.8.8.8 (Google's DNS Resolver)
+- 1.1.1.1 (CloudFlare's DNS Resolver)
+
+I picked Google because it's a fairly well connceted site, and I picked the second two IPs so that if 
+DNS is flaky, it won't impact either those, and those two IP addresses are owned by completely different entities.
+
 
 ## More detailed options
 
+- Want to specific specific hosts to ping? `-e "TARGET=google.com cnn.com 8.8.8.8 1.1.1.1"` is the way to do that
 - Want to get an interactive shell? Before sure to specific `-e INTERACTIVE=1 -ti` in the `docker run` command
 - Want to get your local timezone? Use something similar to `-e TZ=EST5EDT` in the `docker run` command.
 - Want to set a non-default password? Use `-e SPLUNK_PASSWORD=password` to do that.
@@ -52,17 +64,15 @@ docker build . -t splunk && \
 	docker run --rm --name splunk \
 	-e INTERACTIVE=1 -e TZ=EST5EDT -ti -p 8000:8000 \
 	-v $(pwd)/data:/opt/splunk/var/lib/splunk/defaultdb \
+	-v $(pwd):/mnt
+	--privileged
 	splunk
 docker tag splunk dmuth1/splunk-network-monitor
 docker push dmuth1/splunk-network-monitor
 ```
 
-
-### Why ping google.com?
-
-Google's website is ridiculuously multi-homed, and as such has excellent availability.
-
-In the future, I will look into configuration for specific hosts.
+`--privileged` is specified so that `/opt/splunk/etc/apps/Network-Monitor/bin/icmp_loop.sh` can
+be run insdie of the container for testing.
 
 
 ## Questions, comments, abuse, and offers of employment

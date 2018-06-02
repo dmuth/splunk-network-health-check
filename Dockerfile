@@ -4,7 +4,8 @@
 # I slimmed this down, as I have no desire to run as a separate user, set up a Deployment
 # Server, generate PDFs, etc.  All I want to do is run a this single app.
 #
-FROM debian:jessie
+#FROM debian:jessie
+FROM debian:stretch
 
 ENV SPLUNK_PRODUCT splunk
 ENV SPLUNK_VERSION 7.1.1
@@ -23,7 +24,7 @@ ENV LANG en_US.utf8
 
 # Download official Splunk release, verify checksum and unzip in /opt/splunk
 # Also backup etc folder, so it will be later copied to the linked volume
-RUN apt-get update && apt-get install -y wget sudo \
+RUN apt-get update && apt-get install -y wget procps fping less iptables \
     && mkdir -p ${SPLUNK_HOME} \
     && wget -qO /tmp/${SPLUNK_FILENAME} https://download.splunk.com/products/${SPLUNK_PRODUCT}/releases/${SPLUNK_VERSION}/linux/${SPLUNK_FILENAME} \
     && wget -qO /tmp/${SPLUNK_FILENAME}.md5 https://download.splunk.com/products/${SPLUNK_PRODUCT}/releases/${SPLUNK_VERSION}/linux/${SPLUNK_FILENAME}.md5 \
@@ -32,20 +33,21 @@ RUN apt-get update && apt-get install -y wget sudo \
     && rm /tmp/${SPLUNK_FILENAME} \
     && rm /tmp/${SPLUNK_FILENAME}.md5 \
     && apt-get purge -y --auto-remove wget 
-    #&& rm -rf /var/lib/apt/lists/*
+
 
 #
 # Copy in some Splunk configuration
 #
-COPY files/user-seed.conf /opt/splunk/etc/system/local/user-seed.conf.in
-COPY files/web.conf /opt/splunk/etc/system/local/web.conf.in
 COPY files/splunk-launch.conf /opt/splunk/etc/
+COPY files/user-seed.conf /opt/splunk/etc/system/local/user-seed.conf.in
+COPY files/ui-prefs.conf /opt/splunk/etc/system/local/ui-prefs.conf
+COPY files/user-prefs.conf /opt/splunk/etc/apps/user-prefs/local/user-prefs.conf
+COPY files/web.conf /opt/splunk/etc/system/local/web.conf.in
 
 #
 # Copy in the app
 # 
 COPY Network-Monitor/ /opt/splunk/etc/apps/Network-Monitor/
-COPY files/user-prefs.conf /opt/splunk/etc/apps/user-prefs/local/user-prefs.conf
 
 #
 # Copy in our entry script which will install Splunk
