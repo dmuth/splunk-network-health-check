@@ -5,7 +5,7 @@ This app will monitor your Internet connection by pinging Google and creating ni
 60 second installation:
 
 ```
-docker run --rm -p 8000:8000 -v $(pwd)/data:/opt/splunk/var/lib/splunk/defaultdb splunk
+docker run --rm -p 8000:8000 -v $(pwd)/data:/opt/splunk/var/lib/splunk/defaultdb dmuth1/splunk-network-monitor
 ```
 
 You can now go to http://localhost:8000/ and get graphs like these:
