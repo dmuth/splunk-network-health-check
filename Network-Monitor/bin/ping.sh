@@ -4,28 +4,18 @@
 # The results will be reported to (and stored in) Splunk.
 #
 
-TARGET="google.com"
 
-#WAIT_TIME=3 # Debugging
-WAIT_TIME=10
+TARGETS="google.com 1.1.1.1 8.8.8.8"
+#TARGETS="${TARGETS} 10.0.0.2" # Debugging
 
 #
-# -w/-T specifies how long to wait.
-# That way, if we're seeing 100% packet loss, the ping command still exits after the appropriate amount of time.
+# How many pings to me?
 #
-if test ${OSTYPE} == "darwin12" -o ${OSTYPE} == "darwin13" -o ${OSTYPE} == "darwin14" -o ${OSTYPE} == "darwin10.0"
-then
-	#
-	# We're on OS/X!
-	#
-	ping -t ${WAIT_TIME} -q ${TARGET}
+NUM=10
 
-else
-	#
-	# Assume Linux
-	#
-	ping -w ${WAIT_TIME} -q ${TARGET}
-
-fi
+#
+# Summary is written on stderr, so send that to stdout
+#
+fping -q -c ${NUM} ${TARGETS} 2>&1
 
 

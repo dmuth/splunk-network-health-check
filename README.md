@@ -52,10 +52,15 @@ docker build . -t splunk && \
 	docker run --rm --name splunk \
 	-e INTERACTIVE=1 -e TZ=EST5EDT -ti -p 8000:8000 \
 	-v $(pwd)/data:/opt/splunk/var/lib/splunk/defaultdb \
+	-v $(pwd):/mnt
+	--privileged
 	splunk
 docker tag splunk dmuth1/splunk-network-monitor
 docker push dmuth1/splunk-network-monitor
 ```
+
+`--privileged` is specified so that `/opt/splunk/etc/apps/Network-Monitor/bin/icmp_loop.sh` can
+be run insdie of the container for testing.
 
 
 ### Why ping google.com?
