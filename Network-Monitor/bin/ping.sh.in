@@ -5,7 +5,7 @@
 #
 
 
-TARGETS="google.com 1.1.1.1 8.8.8.8"
+TARGETS="%targets%"
 #TARGETS="${TARGETS} 10.0.0.2" # Debugging
 
 #

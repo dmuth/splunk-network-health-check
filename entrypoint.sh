@@ -9,6 +9,7 @@
 set -e
 
 SPLUNK_PASSWORD="${SPLUNK_PASSWORD:-password}"
+TARGETS="${TARGETS:-google.com 8.8.8.8 1.1.1.1}"
 
 
 #
@@ -19,6 +20,15 @@ pushd /opt/splunk/etc/system/local/ >/dev/null
 cat user-seed.conf.in | sed -e "s/%password%/${SPLUNK_PASSWORD}/" > user-seed.conf
 cat web.conf.in | sed -e "s/%password%/${SPLUNK_PASSWORD}/" > web.conf
 
+popd > /dev/null
+
+
+#
+# Set our targets in the shell script
+#
+pushd /opt/splunk/etc/apps/Network-Monitor/bin >/dev/null
+cat ping.sh.in | sed -e "s/%targets%/${TARGETS}/" > ping.sh
+chmod 755 ping.sh
 popd > /dev/null
 
 
