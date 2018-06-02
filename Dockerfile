@@ -45,6 +45,7 @@ COPY files/splunk-launch.conf /opt/splunk/etc/
 # Copy in the app
 # 
 COPY Network-Monitor/ /opt/splunk/etc/apps/Network-Monitor/
+COPY files/user-prefs.conf /opt/splunk/etc/apps/user-prefs/local/user-prefs.conf
 
 #
 # Copy in our entry script which will install Splunk
