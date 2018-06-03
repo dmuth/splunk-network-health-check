@@ -101,4 +101,19 @@
       </chart>
     </panel>
   </row>
+  <row>
+    <panel>
+      <html>
+      
+      Find this project online at <a href="https://github.com/dmuth/splunk-network-monitor">https://github.com/dmuth/splunk-network-monitor</a>
+      <br/>
+      <br/>
+      
+      
+      Run into any issues?  Please file a bug report <a href="https://github.com/dmuth/splunk-network-monitor/issues">here</a>.
+      <br/>
+      
+    </html>
+    </panel>
+  </row>
 </form>
