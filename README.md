@@ -75,7 +75,7 @@ docker push dmuth1/splunk-network-monitor
 ```
 
 `--privileged` is specified so that `/opt/splunk/etc/apps/Network-Monitor/bin/icmp_loop.sh` can
-be run insdie of the container for testing.
+be run inside of the container for testing.
 
 
 ## Questions, comments, abuse, and offers of employment
