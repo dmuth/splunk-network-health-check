@@ -15,7 +15,7 @@ Here are the Docker commands to run it and view the output:
 
 ```
 docker run --name splunk -d --rm -p 8000:8000 \
-	-v $(pwd)/data:/opt/splunk/var/lib/splunk/defaultdb \
+	-v $(pwd)/splunk-network-monitor-data:/opt/splunk/var/lib/splunk/defaultdb \
 	dmuth1/splunk-network-monitor
 docker logs -f splunk
 ```
@@ -26,7 +26,7 @@ No matter how you install it, you can then go to http://localhost:8000/ and get 
 <img src="./img/network-report.png" width="500" /> 
 
 
-Data will be persisted in the `data/` directory between container runs.
+Data will be persisted in the `splunk-network-monitor-data/` directory between container runs.
 
 
 ### Default Targets
@@ -76,7 +76,7 @@ Here's how to do development:
 docker build . -t splunk && \
 	docker run --rm --name splunk \
 	-e INTERACTIVE=1 -e TZ=EST5EDT -ti -p 8000:8000 \
-	-v $(pwd)/data:/opt/splunk/var/lib/splunk/defaultdb \
+	-v $(pwd)/splunk-network-monitor-data:/opt/splunk/var/lib/splunk/defaultdb \
 	-v $(pwd):/mnt
 	--privileged
 	splunk
