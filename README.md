@@ -2,22 +2,32 @@
 
 This app will monitor your Internet connection by pinging Google and creating nice graphs.
 
-60 second installation:
+
+## Quickest Installation
+
+`curl -s https://raw.githubusercontent.com/dmuth/splunk-network-monitor/master/go.sh | bash`
+
+
+## Less Quick Installation
+
+Maybe you don't want to pipe some random script on the Internet into your shell, that's cool.
+Here are the Docker commands to run it and view the output:
 
 ```
-docker run --name splunk --restart unless-stopped -d --rm -p 8000:8000 \
+docker run --name splunk -d --rm -p 8000:8000 \
 	-v $(pwd)/data:/opt/splunk/var/lib/splunk/defaultdb \
 	dmuth1/splunk-network-monitor
 docker logs -f splunk
 ```
 
-You can now go to http://localhost:8000/ and get graphs like these:
 
+No matter how you install it, you can then go to http://localhost:8000/ and get graphs like these:
 
 <img src="./img/network-report.png" width="500" /> 
 
 
 Data will be persisted in the `data/` directory between container runs.
+
 
 ### Default Targets
 
