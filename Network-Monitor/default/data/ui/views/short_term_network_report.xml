@@ -28,6 +28,7 @@
         <earliest>-4h@m</earliest>
         <latest>now</latest>
       </search>
+      <selectFirstChoice>true</selectFirstChoice>
     </input>
   </fieldset>
   <row>
