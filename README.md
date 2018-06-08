@@ -44,7 +44,8 @@ DNS is flaky, it won't impact either those, and those two IP addresses are owned
 
 ## More detailed options
 
-- `-e "TARGETS=google.com cnn.com 8.8.8.8 1.1.1.1" - Specify hosts to ping
+- `--restart unless-stopped` - Causes this container to restart if killed Docker is restarted. **This is highly recommended.**
+- `-e "TARGETS=google.com cnn.com 8.8.8.8 1.1.1.1"` - Specify hosts to ping
 - `-e TZ=EST5EDT` - Specify the timezone of the container (UTC by default)
 - `-e SPLUNK_PASSWORD=password` - Set a non-default password. You WILL do this if you run this in a production environment.
 - `-e INTERACTIVE=1 -it` - If you want an itneractive shell.
@@ -86,6 +87,15 @@ docker push dmuth1/splunk-network-monitor
 
 `--privileged` is specified so that `/opt/splunk/etc/apps/Network-Monitor/bin/icmp_loop.sh` can
 be run inside of the container for testing.
+
+
+## Known Bugs
+
+For reasons unclear to me, if you set up a VPN connection, this completely breaks ping in all
+Docker containers.  Even `docker run alpine ping google.com` doesn't work.
+
+The workaround is to simply restart Docker.  If you started your container with `--restart unless-stopped`,
+it will start up automatically.  I am unclear on if this is something that can be fixed.
 
 
 ## Questions, comments, abuse, and offers of employment
