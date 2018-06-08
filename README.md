@@ -44,16 +44,15 @@ DNS is flaky, it won't impact either those, and those two IP addresses are owned
 
 ## More detailed options
 
-- Want to specific specific hosts to ping? `-e "TARGETS=google.com cnn.com 8.8.8.8 1.1.1.1"` is the way to do that
-- Want to get an interactive shell? Before sure to specific `-e INTERACTIVE=1 -ti` in the `docker run` command
-- Want to get your local timezone? Use something similar to `-e TZ=EST5EDT` in the `docker run` command.
-- Want to set a non-default password? Use `-e SPLUNK_PASSWORD=password` to do that.
-   - Note that passwords in Splunk must be at least 8 characters long.
+- `-e "TARGETS=google.com cnn.com 8.8.8.8 1.1.1.1" - Specify hosts to ping
+- `-e TZ=EST5EDT` - Specify the timezone of the container (UTC by default)
+- `-e SPLUNK_PASSWORD=password` - Set a non-default password. You WILL do this if you run this in a production environment.
+- `-e INTERACTIVE=1 -it` - If you want an itneractive shell.
 
 
 ## What's Splunk?
 
-Splunk is an amazing app that lets you monitor your logfiles and perform analytics on them.  You can monitor other kinds of data, such as the output of the ping command, which is what this app does.  A free copy of Splunk Enterprise [can be downloaded at Splunk.com](http://www.splunk.com/)
+Splunk is an amazing app that lets you monitor your logfiles and perform analytics on them.  You can monitor other kinds of data, such as the output of the ping command, which is what this app does.  A free copy of Splunk Enterprise [can be downloaded at Splunk.com](http://www.splunk.com/) and is downloaded in the Dockerfile.
 
 
 ## How does it work?
