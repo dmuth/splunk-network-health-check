@@ -1,6 +1,7 @@
-# Splunk Network Monitor
+# Splunk Network Health Check
 
-This app will monitor your Internet connection by pinging Google and creating nice graphs.
+This app will monitor health of your Internet connection by pinging Google 
+(and a few other hosts) and creating nice graphs.
 
 
 ## Quickest Installation
