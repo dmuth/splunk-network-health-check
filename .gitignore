@@ -8,4 +8,7 @@
 # Our data from the container
 # 
 data/
+splunk-network-monitor-data/
+
+
 
