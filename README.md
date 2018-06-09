@@ -78,8 +78,8 @@ docker build . -t splunk && \
 	docker run --rm --name splunk \
 	-e INTERACTIVE=1 -e TZ=EST5EDT -ti -p 8000:8000 \
 	-v $(pwd)/splunk-network-monitor-data:/opt/splunk/var/lib/splunk/defaultdb \
-	-v $(pwd):/mnt
-	--privileged
+	-v $(pwd):/mnt \
+	--privileged \
 	splunk
 docker tag splunk dmuth1/splunk-network-monitor
 docker push dmuth1/splunk-network-monitor
