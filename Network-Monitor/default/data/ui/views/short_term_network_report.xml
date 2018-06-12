@@ -117,7 +117,7 @@
         <option name="numberPrecision">0.00</option>
         <option name="rangeColors">["0x53a051","0x0877a6","0xf8be34","0xf1813f","0xdc4e41"]</option>
         <option name="refresh.display">progressbar</option>
-        <option name="underLabel">(Does not include time Splunk was not running)</option>
+        <option name="underLabel">(Does not include time Splunk was not running. Results may not be accurate for hostnames, as DNS lookups may fail.)</option>
         <option name="unit">%</option>
       </single>
     </panel>
