@@ -36,7 +36,8 @@
       <title>Packet Loss</title>
       <chart>
         <search>
-          <query>index=main sourcetype=network-monitor target=$target$ | timechart span=$span$ avg(packet_loss_pct) AS "% Packet Loss"</query>
+          <query>index=main sourcetype=network-monitor target=$target$ 
+| timechart span=$span$ avg(packet_loss_pct) AS "% Packet Loss"</query>
           <earliest>$timespan.earliest$</earliest>
           <latest>$timespan.latest$</latest>
         </search>
@@ -103,6 +104,22 @@
     </panel>
   </row>
   <row>
+    <panel>
+      <title>Uptime</title>
+      <single>
+        <search>
+          <query>index=main sourcetype=network-monitor target=$target$ 
+| timechart span=$span$ avg(packet_loss_pct) AS loss | stats avg(loss) as loss |eval uptime = 100 - loss | fields uptime</query>
+          <earliest>$timespan.earliest$</earliest>
+          <latest>$timespan.latest$</latest>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="numberPrecision">0.00</option>
+        <option name="rangeColors">["0x53a051","0x0877a6","0xf8be34","0xf1813f","0xdc4e41"]</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="unit">%</option>
+      </single>
+    </panel>
     <panel>
       <html>
       
