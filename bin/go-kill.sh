@@ -3,6 +3,7 @@
 # Errors are fatal
 set -e
 
-docker kill splunk
+docker kill splunk || true
+docker rm splunk
 
 
