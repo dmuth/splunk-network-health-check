@@ -17,7 +17,7 @@ Here are the Docker commands to run it and view the output:
 ```
 docker run --name splunk -d --rm -p 8000:8000 \
 	-v $(pwd)/splunk-network-monitor-data:/opt/splunk/var/lib/splunk/defaultdb \
-	dmuth1/splunk-network-monitor
+	dmuth1/splunk-network-health-check
 docker logs -f splunk
 ```
 
@@ -92,8 +92,8 @@ docker build . -t splunk && \
 	-v $(pwd):/mnt \
 	--privileged \
 	splunk
-docker tag splunk dmuth1/splunk-network-monitor
-docker push dmuth1/splunk-network-monitor
+docker tag splunk dmuth1/splunk-network-health-check
+docker push dmuth1/splunk-network-health-check
 ```
 
 `--privileged` is specified so that `/opt/splunk/etc/apps/Network-Monitor/bin/icmp_loop.sh` can
