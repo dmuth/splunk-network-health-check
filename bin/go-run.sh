@@ -36,7 +36,7 @@ cd ..
 echo "# "
 echo "# Pulling latest version of container"
 echo "# "
-docker pull dmuth1/splunk-network-monitor
+docker pull dmuth1/splunk-network-health-check
 
 echo "# "
 echo "# Starting container run..."
@@ -51,6 +51,6 @@ docker run --restart unless-stopped --name splunk \
 	-v $(pwd)/splunk-network-monitor-data:/opt/splunk/var/lib/splunk/defaultdb \
 	-v $(pwd):/mnt \
 	--privileged \
-	splunk
+	dmuth1/splunk-network-health-check
 
 
