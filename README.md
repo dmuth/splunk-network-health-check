@@ -82,6 +82,27 @@ The math I ended up settling on was taking the average of all "packet loss perce
 
 ## Development
 
+
+### The Easy Way
+
+There are some helper scripts in `bin/` which make the process less painful:
+
+- `bin/go-attach.sh` - Spin up a bash shell in a running instance
+- `bin/go-dev.sh [ target [ target [ ... ] ] ] ` - Build an image from the Dockerfile, start it up, and run an interactive `bash` shell. 
+   - Any targets that are specified are pinged in addition to the defaults
+   - When exited, the container will end.
+   - Network data will persist in `splunk-network-monitor-data/` off the project root.
+- `bin/go-kill.sh` - Stop the container and kill it.
+- `bin/go-logs.sh` - Tail the logs of the currently running container
+- `bin/go-push.sh` - Push the image up to Docker Hub
+- `bin/go-run.sh [ target [ target [ ... ] ] ]` - Pull the laetst copy of the image and create a container named `splunk`.
+   - Any targets that are specified are pinged in addition to the defaults
+   - Network data will persist in `splunk-network-monitor-data/` off the project root.
+   - This container will be started with `--restart unless-stopped`, so if Docker is restarted, so will this container.
+
+
+### The Hard Way
+
 Here's how to do development:
 
 ```
