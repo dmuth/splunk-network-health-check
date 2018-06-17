@@ -92,6 +92,7 @@ There are some helper scripts in `bin/` which make the process less painful:
    - Any targets that are specified are pinged in addition to the defaults
    - When exited, the container will end.
    - Network data will persist in `splunk-network-monitor-data/` off the project root.
+   - Set the `SPLUNK_PORT` environment variable to listen on a port other than 8000 on the Docker host
 - `bin/go-kill.sh` - Stop the container and kill it.
 - `bin/go-logs.sh` - Tail the logs of the currently running container
 - `bin/go-push.sh` - Push the image up to Docker Hub
@@ -99,6 +100,8 @@ There are some helper scripts in `bin/` which make the process less painful:
    - Any targets that are specified are pinged in addition to the defaults
    - Network data will persist in `splunk-network-monitor-data/` off the project root.
    - This container will be started with `--restart unless-stopped`, so if Docker is restarted, so will this container.
+   - Set the `SPLUNK_PORT` environment variable to listen on a port other than 8000 on the Docker host
+
 
 
 ### The Hard Way

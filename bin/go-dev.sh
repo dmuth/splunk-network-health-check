@@ -8,6 +8,11 @@ set -e
 #
 TARGETS="google.com 8.8.8.8 1.1.1.1"
 
+#
+# Our Splunk port on the host.  Defaults to 8000 but can be something else.
+#
+SPLUNK_PORT=${SPLUNK_PORT:=8000}
+
 if test "$1" == "-h" -o "$1" == "--help"
 then
 	echo "! "
@@ -48,7 +53,7 @@ docker run --rm --name splunk \
 	-e INTERACTIVE=1 \
 	-e TZ=EST5EDT \
 	-ti \
-	-p 8000:8000 \
+	-p $SPLUNK_PORT:8000 \
 	-v $(pwd)/splunk-network-monitor-data:/opt/splunk/var/lib/splunk/defaultdb \
 	-v $(pwd):/mnt \
 	--privileged \
