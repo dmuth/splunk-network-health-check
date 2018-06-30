@@ -39,16 +39,11 @@ pushd $(dirname $0) >/dev/null
 cd ..
 
 echo "# "
-echo "# Pulling latest version of container"
-echo "# "
-docker pull dmuth1/splunk-network-health-check
-
-echo "# "
 echo "# Starting container run..."
 echo "# "
 echo "# Target setting: ${TARGETS}"
 echo "# "
-docker run --restart unless-stopped --name splunk \
+docker run --restart unless-stopped --name splunk-network-health-check \
 	-d \
 	-e "TARGETS=${TARGETS}" \
 	-e TZ=EST5EDT \
