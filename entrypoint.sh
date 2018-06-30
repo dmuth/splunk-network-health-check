@@ -48,26 +48,10 @@ echo "# 	-e TZ=EST5EDT"
 echo "# "
 
 
-#
-# If we're not running interactively, tail stderr so that the container continues to run.
-#
-if test ! "${INTERACTIVE}"
-then
-	echo "# "
-	echo "# If you were looking to run this container interactively, please restart"
-	echo "# this container with -it -e INTERACTIVE=1 for that."
-	echo "# "
-	tail -f /opt/splunk/var/log/splunk/splunkd_stderr.log
-
-else
-	echo "# "
-	echo "# Running interactively and spawning a shell..."
-	echo "# "
-	echo "# If the shell exits immediately, make sure you specified -it on the command line!"
-	echo "# "
-
-	exec /bin/bash
-
-fi
+echo "# "
+echo "# If you were looking to run this container interactively, please restart"
+echo "# this container with the 'bash' argument."
+echo "# "
+tail -f /opt/splunk/var/log/splunk/splunkd_stderr.log
 
 

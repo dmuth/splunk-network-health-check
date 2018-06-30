@@ -48,7 +48,6 @@ DNS is flaky, it won't impact either those, and those two IP addresses are owned
 - `-e "TARGETS=google.com cnn.com 8.8.8.8 1.1.1.1"` - Specify hosts to ping
 - `-e TZ=EST5EDT` - Specify the timezone of the container (UTC by default)
 - `-e SPLUNK_PASSWORD=password` - Set a non-default password. You WILL do this if you run this in a production environment.
-- `-e INTERACTIVE=1 -it` - If you want an itneractive shell.
 
 
 ## What's Splunk?
@@ -111,7 +110,7 @@ Here's how to do development:
 ```
 docker build . -t splunk-network-health-check && \
 	docker run --rm --name splunk-network-health-check \
-	-e INTERACTIVE=1 -e TZ=EST5EDT -ti -p 8000:8000 \
+	-e TZ=EST5EDT -ti -p 8000:8000 \
 	-v $(pwd)/splunk-network-monitor-data:/opt/splunk/var/lib/splunk/defaultdb \
 	-v $(pwd):/mnt \
 	--privileged \
