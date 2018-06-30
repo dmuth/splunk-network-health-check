@@ -40,7 +40,7 @@ cd ..
 echo "# "
 echo "# Building container..."
 echo "# "
-docker build . -t splunk &&
+docker build . -t splunk-network-health-check &&
 
 
 echo "# "
@@ -48,7 +48,7 @@ echo "# Running container..."
 echo "# "
 echo "# Target setting: ${TARGETS}"
 echo "# "
-docker run --rm --name splunk \
+docker run --rm --name splunk-network-health-check \
 	-e "TARGETS=${TARGETS}" \
 	-e INTERACTIVE=1 \
 	-e TZ=EST5EDT \
@@ -57,6 +57,6 @@ docker run --rm --name splunk \
 	-v $(pwd)/splunk-network-monitor-data:/opt/splunk/var/lib/splunk/defaultdb \
 	-v $(pwd):/mnt \
 	--privileged \
-	splunk
+	splunk-network-health-check
 
 

@@ -9,6 +9,6 @@ echo "# "
 echo "# Press ^C to exit..."
 echo "# "
 
-docker logs -f splunk
+docker logs -f splunk-network-health-check
 
 

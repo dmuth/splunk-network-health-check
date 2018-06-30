@@ -3,7 +3,7 @@
 # Errors are fatal
 set -e
 
-docker kill splunk || true
-docker rm splunk
+docker kill splunk-network-health-check || true
+docker rm splunk-network-health-check
 
 

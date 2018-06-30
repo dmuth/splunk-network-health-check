@@ -3,5 +3,5 @@
 # Errors are fatal
 set -e
 
-docker exec -it splunk /bin/bash
+docker exec -it splunk-network-health-check /bin/bash
 
