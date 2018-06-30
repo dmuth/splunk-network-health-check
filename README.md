@@ -6,7 +6,7 @@ This app will monitor health of your Internet connection by pinging Google
 
 ## Quickest Installation
 
-`curl -s https://raw.githubusercontent.com/dmuth/splunk-network-monitor/master/go.sh | bash`
+`curl -s https://raw.githubusercontent.com/dmuth/splunk-network-health-check/master/bin/go-run.sh | bash`
 
 
 ## Less Quick Installation
