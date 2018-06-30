@@ -15,10 +15,10 @@ Maybe you don't want to pipe some random script on the Internet into your shell,
 Here are the Docker commands to run it and view the output:
 
 ```
-docker run --name splunk -d --rm -p 8000:8000 \
+docker run --name splunk-network-health-check -d --rm -p 8000:8000 \
 	-v $(pwd)/splunk-network-monitor-data:/opt/splunk/var/lib/splunk/defaultdb \
 	dmuth1/splunk-network-health-check
-docker logs -f splunk
+docker logs -f splunk-network-health-check
 ```
 
 
@@ -96,7 +96,7 @@ There are some helper scripts in `bin/` which make the process less painful:
 - `bin/go-kill.sh` - Stop the container and kill it.
 - `bin/go-logs.sh` - Tail the logs of the currently running container
 - `bin/go-push.sh` - Push the image up to Docker Hub
-- `bin/go-run.sh [ target [ target [ ... ] ] ]` - Pull the laetst copy of the image and create a container named `splunk`.
+- `bin/go-run.sh [ target [ target [ ... ] ] ]` - Pull the laetst copy of the image and create a container named `splunk-network-health-check`.
    - Any targets that are specified are pinged in addition to the defaults
    - Network data will persist in `splunk-network-monitor-data/` off the project root.
    - This container will be started with `--restart unless-stopped`, so if Docker is restarted, so will this container.
@@ -109,14 +109,14 @@ There are some helper scripts in `bin/` which make the process less painful:
 Here's how to do development:
 
 ```
-docker build . -t splunk && \
-	docker run --rm --name splunk \
+docker build . -t splunk-network-health-check && \
+	docker run --rm --name splunk-network-health-check \
 	-e INTERACTIVE=1 -e TZ=EST5EDT -ti -p 8000:8000 \
 	-v $(pwd)/splunk-network-monitor-data:/opt/splunk/var/lib/splunk/defaultdb \
 	-v $(pwd):/mnt \
 	--privileged \
-	splunk
-docker tag splunk dmuth1/splunk-network-health-check
+	splunk-network-health-check
+docker tag splunk-network-health-check dmuth1/splunk-network-health-check
 docker push dmuth1/splunk-network-health-check
 ```
 
