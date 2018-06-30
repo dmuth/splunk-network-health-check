@@ -1,0 +1,19 @@
+
+version: "3"
+
+services:
+
+  splunk-network-health-check:
+    build:
+      context: .
+    restart: "unless-stopped"
+    privileged: true
+    volumes:
+      - .:/mnt
+      - ./splunk-network-monitor-data:/opt/splunk/var/lib/splunk/defaultdb
+    environment:
+      - TZ=EST5EDT
+    ports:
+      - 8000:8000
+
+

@@ -102,6 +102,12 @@ There are some helper scripts in `bin/` which make the process less painful:
    - Set the `SPLUNK_PORT` environment variable to listen on a port other than 8000 on the Docker host
 
 
+### The Medium Way (with Docker Compose)
+
+- `docker-compose build`
+- `docker-compose up -d`
+- You can view progress with `docker-compose logs`
+
 
 ### The Hard Way
 
