@@ -60,6 +60,6 @@ docker run --rm --name splunk-network-health-check \
 	-v $(pwd)/splunk-network-monitor-data:/opt/splunk/var/lib/splunk/defaultdb \
 	-v $(pwd):/mnt \
 	--privileged \
-	splunk-network-health-check $@
+	splunk-network-health-check bash
 
 

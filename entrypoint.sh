@@ -47,11 +47,22 @@ echo "# "
 echo "# 	-e TZ=EST5EDT"
 echo "# "
 
+if test ! "$@"
+then
+	echo "# "
+	echo "# If you were looking to run this container interactively, please restart"
+	echo "# this container with the 'bash' argument."
+	echo "# "
+	echo "# Press ^C when you want to exit this container..."
+	echo "# "
+	tail -f /opt/splunk/var/log/splunk/splunkd_stderr.log
 
-echo "# "
-echo "# If you were looking to run this container interactively, please restart"
-echo "# this container with the 'bash' argument."
-echo "# "
-tail -f /opt/splunk/var/log/splunk/splunkd_stderr.log
+else
+	echo "# "
+	echo "# Running command '$@' in the container..."
+	echo "# "
+	exec $@
+
+fi
 
 

@@ -66,6 +66,6 @@ EXPOSE 8000/tcp
 #
 VOLUME [ "/opt/splunk/var/lib/splunk/defaultdb" ]
 
-CMD ["/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
 
 
