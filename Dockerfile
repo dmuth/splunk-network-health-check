@@ -48,7 +48,7 @@ COPY files/web.conf /opt/splunk/etc/system/local/web.conf.in
 #
 # Copy in the app
 # 
-COPY Network-Monitor/ /opt/splunk/etc/apps/Network-Monitor/
+COPY splunk-app/ /opt/splunk/etc/apps/Network-Monitor/
 
 #
 # Copy in our entry script which will install Splunk
