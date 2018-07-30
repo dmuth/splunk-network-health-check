@@ -57,9 +57,7 @@ Splunk is an amazing app that lets you monitor your logfiles and perform analyti
 
 ## How does it work?
 
-At its core, this app uses not one, but **two** scripts to run ping.  The first script (`ping.sh`) pings google.com for 10 seconds at a time and then returns the results.  The second script (`ping-long.sh`) pings google.com for 5 minutes at a time and then returns the results.  
-
-The reason for these two separate scripts is because the first script is useful seeing what short-term behavior of your Internet connection is, but there can be a pause of as much as 1 second between invocations of the script.  `ping-long.sh` mitigates that by running for a much longer interval and can be used to see how your connection performed over a longer period of time.
+At its core, this app uses a script called `ping.sh`.  This script runs `fping` to ping all targets for 10 seconds and returns the results.
 
 
 ## Security Concerns
