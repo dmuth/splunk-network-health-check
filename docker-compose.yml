@@ -10,7 +10,7 @@ services:
     privileged: true
     volumes:
       - .:/mnt
-      - ./splunk-network-monitor-data:/opt/splunk/var/lib/splunk/defaultdb
+      - ./splunk-data:/data
     environment:
       - TZ=EST5EDT
     ports:
