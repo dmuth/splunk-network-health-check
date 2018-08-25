@@ -48,7 +48,7 @@ docker run --restart unless-stopped --name splunk-network-health-check \
 	-e "TARGETS=${TARGETS}" \
 	-e TZ=EST5EDT \
 	-p $SPLUNK_PORT:8000 \
-	-v $(pwd)/splunk-network-monitor-data:/opt/splunk/var/lib/splunk/defaultdb \
+	-v $(pwd)/splunk-data:/opt/splunk/var/lib/splunk/defaultdb \
 	-v $(pwd):/mnt \
 	--privileged \
 	dmuth1/splunk-network-health-check

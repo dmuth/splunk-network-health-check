@@ -16,7 +16,7 @@ Here are the Docker commands to run it and view the output:
 
 ```
 docker run --name splunk-network-health-check -d --rm -p 8000:8000 \
-	-v $(pwd)/splunk-network-monitor-data:/opt/splunk/var/lib/splunk/defaultdb \
+	-v $(pwd)/splunk-data:/opt/splunk/var/lib/splunk/defaultdb \
 	dmuth1/splunk-network-health-check
 docker logs -f splunk-network-health-check
 ```
@@ -27,7 +27,7 @@ No matter how you install it, you can then go to http://localhost:8000/ and get 
 <img src="./img/network-report.png" width="500" /> 
 
 
-Data will be persisted in the `splunk-network-monitor-data/` directory between container runs.
+Data will be persisted in the `splunk-data/` directory between container runs.
 
 
 ### Default Targets
@@ -88,14 +88,14 @@ There are some helper scripts in `bin/` which make the process less painful:
 - `bin/go-dev.sh [ target [ target [ ... ] ] ] ` - Build an image from the Dockerfile, start it up, and run an interactive `bash` shell. 
    - Any targets that are specified are pinged in addition to the defaults
    - When exited, the container will end.
-   - Network data will persist in `splunk-network-monitor-data/` off the project root.
+   - Network data will persist in `splunk-data/` off the project root.
    - Set the `SPLUNK_PORT` environment variable to listen on a port other than 8000 on the Docker host
 - `bin/go-kill.sh` - Stop the container and kill it.
 - `bin/go-logs.sh` - Tail the logs of the currently running container
 - `bin/go-push.sh` - Push the image up to Docker Hub
 - `bin/go-run.sh [ target [ target [ ... ] ] ]` - Pull the laetst copy of the image and create a container named `splunk-network-health-check`.
    - Any targets that are specified are pinged in addition to the defaults
-   - Network data will persist in `splunk-network-monitor-data/` off the project root.
+   - Network data will persist in `splunk-data/` off the project root.
    - This container will be started with `--restart unless-stopped`, so if Docker is restarted, so will this container.
    - Set the `SPLUNK_PORT` environment variable to listen on a port other than 8000 on the Docker host
 
@@ -115,7 +115,7 @@ Here's how to do development:
 docker build . -t splunk-network-health-check && \
 	docker run --rm --name splunk-network-health-check \
 	-e TZ=EST5EDT -ti -p 8000:8000 \
-	-v $(pwd)/splunk-network-monitor-data:/opt/splunk/var/lib/splunk/defaultdb \
+	-v $(pwd)/splunk-data:/opt/splunk/var/lib/splunk/defaultdb \
 	-v $(pwd):/mnt \
 	--privileged \
 	splunk-network-health-check
