@@ -57,7 +57,8 @@ docker run --rm --name splunk-network-health-check \
 	-e TZ=EST5EDT \
 	-ti \
 	-p $SPLUNK_PORT:8000 \
-	-v $(pwd)/splunk-data:/opt/splunk/var/lib/splunk/defaultdb \
+	-v $(pwd)/splunk-app:/app \
+	-v $(pwd)/splunk-data:/data \
 	-v $(pwd):/mnt \
 	--privileged \
 	splunk-network-health-check bash

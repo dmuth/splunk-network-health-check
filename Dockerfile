@@ -46,9 +46,15 @@ COPY files/user-prefs.conf /opt/splunk/etc/apps/user-prefs/local/user-prefs.conf
 COPY files/web.conf /opt/splunk/etc/system/local/web.conf.in
 
 #
-# Copy in the app
+# Copy in the app to /app/ and link the expected location to it.
 # 
-COPY splunk-app/ /opt/splunk/etc/apps/Network-Monitor/
+COPY splunk-app/ /app
+RUN ln -s /app /opt/splunk/etc/apps/Network-Monitor
+
+#
+# Link to our /data/ directory so that any data we create gets exported.
+#
+RUN ln -s /opt/splunk/var/lib/splunk/defaultdb /data
 
 #
 # Copy in our entry script which will install Splunk
@@ -60,11 +66,6 @@ RUN chmod +x /entrypoint.sh
 # Expose Splunk web
 #
 EXPOSE 8000/tcp
-
-#
-# Folder for our data
-#
-VOLUME [ "/opt/splunk/var/lib/splunk/defaultdb" ]
 
 ENTRYPOINT ["/entrypoint.sh"]
 
