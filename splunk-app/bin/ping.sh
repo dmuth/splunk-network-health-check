@@ -16,10 +16,21 @@ then
 fi
 
 TARGET=$1
+NUM=600
 
 #
-# Use stdbuf to turn off the buffering so results make it into Splunk immediately
+# Ping for a time period and then stop.
+# The reason we do this is that certain IPs (such as Google) may change frequently.
+# This is doubly so if you are attached to a hotspot that is moving (Amtrak!).
 #
-stdbuf -oL -eL /iputils/ping ${TARGET} 2>&1 
+while true
+do
+
+	#
+	# Use stdbuf to turn off the buffering so results make it into Splunk immediately
+	#
+	stdbuf -oL -eL /iputils/ping -c ${NUM} ${TARGET} 2>&1 
+
+done
 
 
