@@ -10,14 +10,14 @@
     </input>
     <input type="dropdown" token="span" searchWhenChanged="true">
       <label>Chart timespan</label>
-      <default>10</default>
-      <choice value="10">10s</choice>
-      <choice value="15">15s</choice>
-      <choice value="60">1m</choice>
-      <choice value="300">5m</choice>
-      <choice value="600">10m</choice>
-      <choice value="3600">1h</choice>
-      <choice value="86400">1d</choice>
+      <choice value="10s">10s</choice>
+      <choice value="15s">15s</choice>
+      <choice value="1m">1m</choice>
+      <choice value="5m">5m</choice>
+      <choice value="10m">10m</choice>
+      <choice value="1h">1h</choice>
+      <choice value="1d">1d</choice>
+      <default>10s</default>
     </input>
     <input type="dropdown" token="target">
       <label>Target</label>
@@ -36,13 +36,16 @@
       <title>Packet Loss</title>
       <chart>
         <search>
-          <query>index=main target=$target$ time=* | timechart partial=f span=$span$s count | eval pct=(1 - count / $span$) * 100 | timechart span=$span$s avg(pct) AS "% Packet Loss"</query>
+          <query>index=main target="$target$" transmitted=* 
+| timechart span=$span$ sum(transmitted) AS transmitted sum(received) AS received
+| eval pct=(1- received/transmitted) * 100 
+| timechart span=$span$ avg(pct) AS "% Packet Loss"</query>
           <earliest>$timespan.earliest$</earliest>
           <latest>$timespan.latest$</latest>
         </search>
         <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
         <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
-        <option name="charting.axisTitleX.visibility">visible</option>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
         <option name="charting.axisTitleY.visibility">visible</option>
         <option name="charting.axisTitleY2.visibility">visible</option>
         <option name="charting.axisX.scale">linear</option>
@@ -107,8 +110,11 @@
       <title>Uptime</title>
       <single>
         <search>
-          <query>index=main sourcetype=network-monitor target=$target$ time=* 
-| timechart partial=f span=$span$s count | eval pct=(1 - count / $span$) * 100 | eval uptime = 100 - pct | stats avg(uptime)</query>
+          <query>index=main target="$target$" transmitted=* 
+| timechart span=$span$ sum(transmitted) AS transmitted sum(received) AS received
+| eval pct=(1- received/transmitted) * 100 
+| eval uptime = 100 - pct 
+| stats avg(uptime)</query>
           <earliest>$timespan.earliest$</earliest>
           <latest>$timespan.latest$</latest>
         </search>

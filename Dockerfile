@@ -32,7 +32,20 @@ RUN apt-get update && apt-get install -y wget procps fping less iptables \
     && tar xzf /tmp/${SPLUNK_FILENAME} --strip 1 -C ${SPLUNK_HOME} \
     && rm /tmp/${SPLUNK_FILENAME} \
     && rm /tmp/${SPLUNK_FILENAME}.md5 \
+	&& apt-get install -y gcc make libcap-dev libidn2-0-dev nettle-dev git \
     && apt-get purge -y --auto-remove wget 
+
+#
+# Compile my hacked version of ping from https://github.com/dmuth/iputils
+# This will give us periodic updates on packets sent/received and include the
+# name of the target in the output.
+#
+WORKDIR /
+RUN git clone https://github.com/dmuth/iputils.git
+WORKDIR /iputils
+RUN make
+
+WORKDIR /
 
 
 #

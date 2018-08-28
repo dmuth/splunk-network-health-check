@@ -17,13 +17,9 @@ fi
 
 TARGET=$1
 
-#ping ${TARGET} 2>&1 | sed -e "s/^/${TARGET}: /"
-#stdbuf -oL -eL ping ${TARGET} 2>&1 | sed -e "s/^/${TARGET}: /"
-
 #
 # Use stdbuf to turn off the buffering so results make it into Splunk immediately
 #
-#stdbuf -oL -eL ping ${TARGET} 2>&1 | stdbuf -oL -eL sed -e "s/^/${TARGET}: /"
-ping ${TARGET} 2>&1 | stdbuf -oL -eL sed -e "s/^/${TARGET}: /"
+stdbuf -oL -eL /iputils/ping ${TARGET} 2>&1 
 
 

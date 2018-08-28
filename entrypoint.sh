@@ -27,8 +27,8 @@ popd > /dev/null
 # Set our targets in the shell script
 #
 pushd /opt/splunk/etc/apps/Network-Monitor/bin >/dev/null
-cat ping.sh.in | sed -e "s/%targets%/${TARGETS}/" > ping.sh
-chmod 755 ping.sh
+#cat ping.sh.in | sed -e "s/%targets%/${TARGETS}/" > ping.sh
+#chmod 755 ping.sh
 popd > /dev/null
 
 
