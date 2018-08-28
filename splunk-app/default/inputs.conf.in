@@ -1,0 +1,14 @@
+
+
+[script://./bin/ping.sh %target%]
+#
+# Store results in the main index with their own sourcetype
+#
+index = main
+sourcetype = network-monitor
+#
+# Don't run this script anymore than 5 seconds apart
+#
+interval = 5
+
+

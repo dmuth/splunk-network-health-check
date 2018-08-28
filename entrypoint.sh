@@ -24,11 +24,16 @@ popd > /dev/null
 
 
 #
-# Set our targets in the shell script
+# Create inputs.conf with our targets
 #
-pushd /opt/splunk/etc/apps/Network-Monitor/bin >/dev/null
-#cat ping.sh.in | sed -e "s/%targets%/${TARGETS}/" > ping.sh
-#chmod 755 ping.sh
+pushd /opt/splunk/etc/apps/Network-Monitor/default >/dev/null
+
+for TARGET in ${TARGETS}
+do
+	echo "# Adding target '${TARGET}' to inputs.conf..."
+	cat inputs.conf.in | sed -e "s/%target%/${TARGET}/" >> inputs.conf
+done
+
 popd > /dev/null
 
 

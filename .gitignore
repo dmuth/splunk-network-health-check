@@ -10,5 +10,9 @@
 data/
 splunk-data/
 
+#
+# Our inputs.conf is machine-generated.
+#
+splunk-app/default/inputs.conf
 
 
