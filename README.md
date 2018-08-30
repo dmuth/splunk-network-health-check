@@ -60,6 +60,21 @@ Splunk is an amazing app that lets you monitor your logfiles and perform analyti
 At its core, this app uses a script called `ping.sh`.  This script runs <a href="https://github.com/dmuth/iputils">a hacked veriosn of ping</a> to ping all targets and report on status (packets sent/packets received) every 10 seconds.
 
 
+### "Oh god, why did you hack ping?"
+
+A few reasons:
+
+- `fping` sometimes returned negative RTTs, so that's not a good sign.
+- Running `ping -c 10` multiple times in parallel caused N processes to be spawned every 10 seconds. 
+   - The performance impact wasn't *terrible*, but I wanted this app to be as friendly to the CPU as I could make it.
+- `fping` also didn't periodically report on the status of hosts that I was pinging.
+- `fping` also got a little weird if there was no Internet connectivity, as DNS would not resolve
+   - You'd think this *wouldn't* be a problem when pinging IPs, but sadly, it was.
+
+Taking all of these into account, it seemed to make the most sense to hack ping to print its status every 10
+seconds and use that as the basis of the uptime graph in Splunk.
+
+
 ## Security Concerns
 
 **Please** set a password if you are deploying this on anything other than a personal device.
