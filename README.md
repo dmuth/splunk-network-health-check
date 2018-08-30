@@ -81,17 +81,6 @@ seconds and use that as the basis of the uptime graph in Splunk.
 That is done with `-e SPLUNK_PASSWORD=<password>`.
 
 
-## Uptime Notes
-
-Uptime was a tricky metric to figure out.  There were a few reasons for this:
-
-- `fillnull` mostly worked, but would frequently cause the most recent event to falsely have a packet "loss" of 100%
-- If the Internet connection goes down, DNS lookups won't work.
-- I observed instances when even pinging IP addresses, `fping` defied its documentation and took 30 seconds to run 10 pings. This meant I could not expect an average of 1 response (or lack thereof) per second.
-
-The math I ended up settling on was taking the average of all "packet loss percent" points from the Packet Loss graph, and subtracting that number from 100.  It's not perfect, but it's the best I can do currently.
-
-
 ## Development
 
 
