@@ -57,7 +57,7 @@ Splunk is an amazing app that lets you monitor your logfiles and perform analyti
 
 ## How does it work?
 
-At its core, this app uses a script called `ping.sh`.  This script runs <a href="https://github.com/dmuth/iputils">a hacked veriosn of ping</a> to ping all targets and report on status (packets sent/packets received) every 10 seconds.
+At its core, this app uses a script called `ping.sh`.  This script runs <a href="https://github.com/dmuth/iputils">a hacked version of ping</a> to ping all targets and report on status (packets sent/packets received) every 10 seconds.
 
 
 ### "Oh god, why did you hack ping?"
