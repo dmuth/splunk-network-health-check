@@ -45,6 +45,16 @@ function allow_traffic() {
 } # End of function allow_traffic()
 
 
+#
+# Nuke our output chain.
+#
+function flush_iptables() {
+
+	iptables -F OUTPUT
+
+} # End of function flush_iptables()
+
+
 echo "# "
 echo "# Starting run to drop random traffic!"
 echo "# "
@@ -53,6 +63,8 @@ echo "# Period to drop/not drop traffic for: ${PERIOD}"
 echo "# Number of loops: ${NUM_LOOPS}"
 echo "# "
 
+
+flush_iptables
 
 NUM_LOOPS_LEFT=$NUM_LOOPS
 
@@ -81,6 +93,8 @@ do
 	NUM_LOOPS_LEFT=$(( $NUM_LOOPS_LEFT - 1 ))
 
 done
+
+flush_iptables
 
 echo "# Done!"
 
