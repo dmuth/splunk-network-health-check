@@ -96,7 +96,7 @@
         <option name="charting.chart.bubbleMaximumSize">50</option>
         <option name="charting.chart.bubbleMinimumSize">10</option>
         <option name="charting.chart.bubbleSizeBy">area</option>
-        <option name="charting.chart.nullValueMode">connect</option>
+        <option name="charting.chart.nullValueMode">gaps</option>
         <option name="charting.chart.showDataLabels">minmax</option>
         <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
         <option name="charting.chart.stackMode">default</option>
