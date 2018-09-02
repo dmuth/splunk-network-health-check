@@ -50,9 +50,17 @@ function allow_traffic() {
 #
 function init() {
 
+	echo "# "
+	echo "# Resetting iptables..."
+	echo "# "
 	iptables -F OUTPUT
 
 } # End of init()
+
+#
+# If we exit early, reset iptables.
+#
+trap init SIGINT SIGTERM
 
 
 echo "# "
