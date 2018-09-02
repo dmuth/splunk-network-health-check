@@ -48,11 +48,11 @@ function allow_traffic() {
 #
 # Nuke our output chain.
 #
-function flush_iptables() {
+function init() {
 
 	iptables -F OUTPUT
 
-} # End of function flush_iptables()
+} # End of init()
 
 
 echo "# "
@@ -64,7 +64,7 @@ echo "# Number of loops: ${NUM_LOOPS}"
 echo "# "
 
 
-flush_iptables
+init
 
 NUM_LOOPS_LEFT=$NUM_LOOPS
 
@@ -94,7 +94,7 @@ do
 
 done
 
-flush_iptables
+init
 
 echo "# Done!"
 
