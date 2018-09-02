@@ -5,7 +5,7 @@ set -e
 
 LATENCY="100"
 JITTER="10"
-LATENCY_CORRELATION="50"
+LATENCY_CORRELATION="0"
 LATENCY_DISTRIBUTION="normal"
 LOSS="10"
 TIME=10
@@ -113,7 +113,7 @@ echo "# Command: ${CMD}"
 echo "# "
 
 $CMD
-echo "# Network settings applied!  Not sleeping for ${TIME} seconds..."
+echo "# Network settings applied!  Now sleeping for ${TIME} seconds..."
 sleep $TIME
 
 init
