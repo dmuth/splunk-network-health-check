@@ -80,6 +80,7 @@
           <earliest>$timespan.earliest$</earliest>
           <latest>$timespan.latest$</latest>
         </search>
+        <option name="charting.seriesColors">[0xdd0000,0x00FF00,0xFFA500]</option>
         <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
         <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
         <option name="charting.axisTitleX.visibility">visible</option>
