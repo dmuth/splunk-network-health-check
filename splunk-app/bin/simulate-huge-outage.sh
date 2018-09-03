@@ -16,8 +16,9 @@ pushd $(dirname $0) > /dev/null
 TIME=3600
 #TIME=5 # Debugging
 #TIME=30 # Debugging
+#TIME=60 # Debugging
 
 echo "# Simulating a huge network outage..."
-./simulate-network.sh --time ${TIME} --latency 1000 --jitter 100 --distribution pareto --loss 90
+./simulate-network.sh --time ${TIME} --latency 1000 --jitter 100 --distribution normal --loss 80 --loss-correlation 50
 
 
