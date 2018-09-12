@@ -41,7 +41,8 @@ cd ..
 echo "# "
 echo "# Starting container run..."
 echo "# "
-echo "# Target setting: ${TARGETS}"
+echo "# TARGETS=${TARGETS}"
+echo "# SPLUNK_PORT=${SPLUNK_PORT}"
 echo "# "
 docker run --restart unless-stopped --name splunk-network-health-check \
 	-d \
