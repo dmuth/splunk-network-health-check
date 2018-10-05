@@ -66,7 +66,7 @@
         <option name="charting.layout.splitSeries">0</option>
         <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
         <option name="charting.legend.placement">right</option>
-        <option name="height">200</option>
+        <option name="height">250</option>
         <option name="refresh.display">progressbar</option>
       </chart>
     </panel>
@@ -107,7 +107,7 @@
         <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
         <option name="charting.legend.placement">right</option>
         <option name="charting.seriesColors">[0xdd0000,0x00FF00,0xFFA500]</option>
-        <option name="height">200</option>
+        <option name="height">250</option>
         <option name="refresh.display">progressbar</option>
       </chart>
     </panel>
