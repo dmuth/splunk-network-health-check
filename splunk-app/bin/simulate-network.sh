@@ -101,6 +101,11 @@ trap init SIGINT SIGTERM
 
 init
 
+if test ! "$1"
+then
+	print_syntax
+fi
+
 parse_args $@
 
 CMD="tc qdisc replace dev eth0 root netem delay ${LATENCY}ms ${JITTER}ms ${LATENCY_CORRELATION}% distribution ${LATENCY_DISTRIBUTION} loss ${LOSS}%"
