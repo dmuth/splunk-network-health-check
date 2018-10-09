@@ -13,9 +13,9 @@ set -e
 pushd $(dirname $0) > /dev/null
 
 
-TIME_SURFACE=120
+TIME_SURFACE=600
 #TIME_SURFACE=5 # Debugging
-TIME_TUNNEL=240
+TIME_TUNNEL=180
 #TIME_TUNNEL=10 # Debugging
 
 function surface() {
