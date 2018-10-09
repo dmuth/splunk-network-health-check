@@ -14,6 +14,7 @@
       <choice value="15s">15s</choice>
       <choice value="30s">30s</choice>
       <choice value="1m">1m</choice>
+      <choice value="2m">2m</choice>
       <choice value="5m">5m</choice>
       <choice value="10m">10m</choice>
       <choice value="1h">1h</choice>
