@@ -17,7 +17,7 @@ pushd $(dirname $0) > /dev/null
 
 function cycle() {
 	echo "# Simulating firewall issue..."
-	./simulate-network.sh --time ${TIME} --latency 400 --jitter 50 --distribution pareto --loss 80
+	./simulate-network.sh --time ${TIME} --latency 400 --jitter 50 --distribution pareto --loss 0
 	echo "# Back to normal! (for the next ${TIME} seconds...)"
 	sleep ${TIME}
 }
