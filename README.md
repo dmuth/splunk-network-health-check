@@ -24,7 +24,7 @@ docker logs -f splunk-network-health-check
 
 No matter how you install it, you can then go to http://localhost:8000/ and get graphs like these:
 
-<img src="./img/network-report.png" width="500" /> 
+<img src="./img/network-amtrak-with-hotspot.png" width="250" /> <img src="./img/network-firewall-failing.png" width="250" /> <img src="./img/network-huge-outage.png" width="250" />
 
 
 Data will be persisted in the `splunk-data/` directory between container runs.
