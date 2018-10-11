@@ -37,10 +37,7 @@ fi
 pushd $(dirname $0) >/dev/null
 cd ..
 
-echo "# "
-echo "# Building container..."
-echo "# "
-docker build . -t splunk-network-health-check &&
+./bin/build.sh
 
 
 echo "# "
