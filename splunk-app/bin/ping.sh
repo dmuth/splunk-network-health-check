@@ -16,7 +16,12 @@ then
 fi
 
 TARGET=$1
-NUM=600
+#
+# Go for 601 seconds so that, under normal network conditions, the line 
+# with the target, transmitted, and received values will be printed.
+# If it's just 600, then we get a "gap" every 10 minutes.
+#
+NUM=601
 
 #
 # Ping for a time period and then stop.
