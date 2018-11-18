@@ -114,8 +114,8 @@ version = 6.2.0
 modtime = 1415161145.657524000
 
 [nav/default]
-version = 6.2.0
-modtime = 1416363313.313902000
+version = 7.1.1
+modtime = 1542506759.667250000
 
 [props/network-monitor/EXTRACT-target%2Cpackets_sent%2Cpackets_received]
 access = read : [ * ], write : [ * ]
@@ -136,3 +136,9 @@ access = read : [ * ], write : [ admin ]
 owner = admin
 version = 7.1.1
 modtime = 1535169487.988562000
+
+[views/network_health_report_small_screen]
+export = none
+owner = admin
+version = 7.1.1
+modtime = 1542506371.541940000
