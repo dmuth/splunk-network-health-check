@@ -140,6 +140,11 @@ The workaround is to simply restart Docker.  If you started your container with 
 it will start up automatically.  I am unclear on if this is something that can be fixed.
 
 
+## Additional Reading
+
+- <a href="https://github.com/dmuth/splunk-lab">Splunk Lab</a> - A more generic Dockerized version of Splunk which I developed
+
+
 ## Questions, comments, abuse, and offers of employment
 
 - Email: doug.muth@gmail.com
