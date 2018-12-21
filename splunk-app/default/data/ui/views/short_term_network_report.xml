@@ -4,8 +4,8 @@
     <input type="time" token="timespan" searchWhenChanged="true">
       <label>Time Period</label>
       <default>
-        <earliest>-15m</earliest>
-        <latest>now</latest>
+        <earliest>rt-5m</earliest>
+        <latest>rt</latest>
       </default>
     </input>
     <input type="dropdown" token="span" searchWhenChanged="true">

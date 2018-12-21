@@ -106,7 +106,7 @@ modtime = 1415155897.002414000
 [views/short_term_network_report]
 owner = admin
 version = 7.1.1
-modtime = 1542507016.806233000
+modtime = 1545349465.135748000
 
 [views/long_term_network_report]
 owner = admin
@@ -141,4 +141,4 @@ modtime = 1535169487.988562000
 export = none
 owner = admin
 version = 7.1.1
-modtime = 1542506371.541940000
+modtime = 1545349435.207166000
