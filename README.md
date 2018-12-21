@@ -103,6 +103,14 @@ There are some helper scripts in `bin/` which make the process less painful:
    - This container will be started with `--restart unless-stopped`, so if Docker is restarted, so will this container.
    - Set the `SPLUNK_PORT` environment variable to listen on a port other than 8000 on the Docker host
 
+The overall process for running the above should be:
+
+- `bin/dev.sh`
+- If you edited something in the app, look in `local/` and move changed files to `default/`.
+- Run `bin/dev.sh` again so the changes are added to the Docker image and make sure the container works to your satisfaction.
+- Run `bin/push.sh` to upload the changes to Docker Hub
+- Run `bin/run.sh` to run the properly named version (it won't be pulled unless it was deleted)
+
 
 ### The Medium Way (with Docker Compose)
 
