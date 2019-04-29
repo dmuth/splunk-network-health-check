@@ -13,6 +13,63 @@ TARGETS="${TARGETS:-google.com 8.8.8.8 1.1.1.1}"
 
 
 #
+# Require the user to accept the license to continue
+#
+if test "$SPLUNK_START_ARGS" != "--accept-license"
+then
+	echo "! "
+	echo "! You need to accept the Splunk License in order to continue."
+	echo "! Please restart this container with SPLUNK_START_ARGS set to \"--accept-license\" "
+	echo "! as follows: "
+	echo "! "
+	echo "! SPLUNK_START_ARGS=--accept-license"
+	echo "! "
+	exit 1
+fi
+
+#
+# Check for bad passwords.
+#
+if test "$SPLUNK_PASSWORD" == "password"
+then
+	echo "! "
+	echo "! "
+	echo "! Cowardly refusing to set the password to 'password'. Please set a different password."
+	echo "! "
+	echo "! If you need help picking a secure password, there's an app for that:"
+	echo "! "
+	echo "!	https://diceware.dmuth.org/"
+	echo "! "
+	echo "! "
+	exit 1
+
+elif test "$SPLUNK_PASSWORD" == "12345"
+then
+	echo "! "
+	echo "! "
+	echo "! This is not Planet Spaceball.  Please don't use 12345 as a password."
+	echo "! "
+	echo "! "
+	exit 1
+
+fi
+
+
+PASSWORD_LEN=${#SPLUNK_PASSWORD}
+if test $PASSWORD_LEN -lt 8
+then
+	echo "! "
+	echo "! "
+	echo "! Admin password needs to be at least 8 characters!"
+	echo "! "
+	echo "! Password specified: ${SPLUNK_PASSWORD}"
+	echo "! "
+	echo "! "
+	exit 1
+fi
+
+
+#
 # Set our default password
 #
 pushd /opt/splunk/etc/system/local/ >/dev/null
@@ -28,7 +85,10 @@ popd > /dev/null
 #
 pushd /opt/splunk/etc/apps/Network-Monitor/default >/dev/null
 
-for TARGET in ${TARGETS}
+# Remove a previously existing version of this file
+rm -f inputs.conf
+
+for TARGET in $(echo ${TARGETS} | tr "," " ")
 do
 	echo "# Adding target '${TARGET}' to inputs.conf..."
 	cat inputs.conf.in | sed -e "s/%target%/${TARGET}/" >> inputs.conf
@@ -45,11 +105,8 @@ popd > /dev/null
 echo "# "
 echo "# If your data is not persisted, be sure you ran this container with: "
 echo "# "
-echo "#		-v \$(pwd)/data:/opt/splunk/var/lib/splunk/defaultdb"
+echo "#		-v \$(pwd)/splunk-data:/opt/splunk/var/lib/splunk/defaultdb"
 echo "# "
-echo "# Timezone in UTC?  Specify your timezone with -e, such as:"
-echo "# "
-echo "# 	-e TZ=EST5EDT"
 echo "# "
 
 if test ! "$@"
