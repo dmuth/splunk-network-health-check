@@ -150,6 +150,8 @@ fi
 if test "${DOCKER_RM}"
 then
 	CMD="${CMD} --rm"
+else 
+	CMD="${CMD} --restart unless-stopped "
 fi
 
 if test "$SPLUNK_BG" -a "$SPLUNK_BG" != 0
@@ -211,7 +213,7 @@ if test "$DOCKER_RM"
 then
 	echo "# Removing container at exit?        YES"
 else
-	echo "# Removing container at exit?        NO (Set with \$DOCKER_RM=1)"
+	echo "# Removing container at exit?        NO--container will automatically restart (Set with \$DOCKER_RM=1)"
 fi
 
 if test "$DOCKER_CMD"
