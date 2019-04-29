@@ -75,7 +75,7 @@ fi
 pushd /opt/splunk/etc/system/local/ >/dev/null
 
 cat user-seed.conf.in | sed -e "s/%password%/${SPLUNK_PASSWORD}/" > user-seed.conf
-cat web.conf.in | sed -e "s/%password%/${SPLUNK_PASSWORD}/" > web.conf
+cp web.conf.in web.conf
 
 popd > /dev/null
 
