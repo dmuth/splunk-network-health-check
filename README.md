@@ -92,12 +92,9 @@ That is done with `-e SPLUNK_PASSWORD=<password>`.
 
 There are some helper scripts in `bin/` which make the process less painful:
 
-- `bin/attach.sh` - Spin up a bash shell in a running instance
-- `bin/dev.sh [ target [ target [ ... ] ] ] ` - Build an image from the Dockerfile, start it up, and run an interactive `bash` shell. 
-   - Any targets that are specified are pinged in addition to the defaults
+- `bin/dev.sh - Build an image from the Dockerfile, start it, and spawn a `bash` shell
+   - This is actually a wrapper for `go.sh`, so just follow the on-screen prompts.
    - When exited, the container will end.
-   - Network data will persist in `splunk-data/` off the project root.
-   - Set the `SPLUNK_PORT` environment variable to listen on a port other than 8000 on the Docker host
 - `bin/kill.sh` - Stop the container and kill it.
 - `bin/logs.sh` - Tail the logs of the currently running container
 - `bin/push.sh` - Push the image up to Docker Hub
