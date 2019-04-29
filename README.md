@@ -7,7 +7,10 @@ This app will monitor health of your Internet connection by pinging Google
 
 ## Quickest Installation
 
-`curl -s https://raw.githubusercontent.com/dmuth/splunk-network-health-check/master/bin/run.sh | bash`
+`SPLUNK_START_ARGS=--accept-license bash <(curl -s https://raw.githubusercontent.com/dmuth/splunk-network-health-check/master/go.sh)`
+
+Follow the on-screen instructions for configuration Splunk Network Health Check 
+and you should be running in no time!
 
 
 ## Less Quick Installation
@@ -17,6 +20,7 @@ Here are the Docker commands to run it and view the output:
 
 ```
 docker run --name splunk-network-health-check -d --rm -p 8000:8000 \
+	-e SPLUNK_START_ARGS=--accept-license \
 	-v $(pwd)/splunk-data:/opt/splunk/var/lib/splunk/defaultdb \
 	dmuth1/splunk-network-health-check
 docker logs -f splunk-network-health-check
@@ -46,8 +50,7 @@ DNS is flaky, it won't impact either those, and those two IP addresses are owned
 ## More detailed options
 
 - `--restart unless-stopped` - Causes this container to restart if killed Docker is restarted. **This is highly recommended.**
-- `-e "TARGETS=google.com cnn.com 8.8.8.8 1.1.1.1"` - Specify hosts to ping
-- `-e TZ=EST5EDT` - Specify the timezone of the container (UTC by default)
+- `-e "TARGETS=google.com,cnn.com,8.8.8.8,1.1.1.1"` - Specify hosts to ping
 - `-e SPLUNK_PASSWORD=password` - Set a non-default password. You WILL do this if you run this in a production environment.
 
 
@@ -127,7 +130,8 @@ Here's how to do development:
 ```
 docker build . -t splunk-network-health-check && \
 	docker run --rm --name splunk-network-health-check \
-	-e TZ=EST5EDT -ti -p 8000:8000 \
+	-e SPLUNK_START_ARGS=--accept-license \
+	-ti -p 8000:8000 \
 	-v $(pwd)/splunk-data:/opt/splunk/var/lib/splunk/defaultdb \
 	-v $(pwd):/mnt \
 	--privileged \
@@ -157,7 +161,8 @@ it will start up automatically.  I am unclear on if this is something that can b
 ## Questions, comments, abuse, and offers of employment
 
 - Email: doug.muth@gmail.com
-- Twitter: http://twitter.com/dmuth
-- Facebook: http://facebook.com/dmuth
+- Twitter: <a href="http://twitter.com/dmuth">http://twitter.com/dmuth</a>
+- Facebook: <a href="http://facebook.com/dmuth">http://facebook.com/dmuth</a>
+
 
 
