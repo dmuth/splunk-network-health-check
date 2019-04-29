@@ -109,6 +109,22 @@ The workaround is to simply restart Docker.  If you started your container with 
 it will start up automatically.  I am unclear on if this is something that can be fixed.
 
 
+## FAQ
+
+### Why does the Splunk web interface run with HTTPS enabled?
+
+Because one day, someone somewhere will install this app on a machine which faces
+the public Internet, and passwords will be sent over the clear.  In fact, over a 
+long enough time, the odds of this happening approach 1.
+
+THAT is why I use HTTPS/SSL.  And why you should too on your apps.
+
+
+## Licensing
+
+Splunk has its own license.  Please abide by it.
+
+
 ## Additional Reading
 
 - <a href="https://github.com/dmuth/splunk-lab">Splunk Lab</a> - A more generic Dockerized version of Splunk which I developed
