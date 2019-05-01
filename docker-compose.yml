@@ -11,8 +11,6 @@ services:
     volumes:
       - .:/mnt
       - ./splunk-data:/data
-    environment:
-      - TZ=EST5EDT
     ports:
       - 8000:8000
 
