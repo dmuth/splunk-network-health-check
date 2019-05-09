@@ -20,7 +20,7 @@ set -e
 # Set default values for our vars
 #
 TARGETS="${TARGETS:-google.com,8.8.8.8,1.1.1.1}"
-SPLUNK_PASSWORD=${SPLUNK_PASSWORD:-password}
+SPLUNK_PASSWORD=${SPLUNK_PASSWORD:-password1}
 SPLUNK_DATA=${SPLUNK_DATA:-splunk-data}
 SPLUNK_PORT=${SPLUNK_PORT:-8000}
 SPLUNK_DEVEL=${SPLUNK_DEVEL:-}
@@ -224,6 +224,19 @@ else
 fi
 
 echo "# "
+
+if test "$SPLUNK_PASSWORD" == "password1"
+then
+	echo "# "
+	echo "# PLEASE NOTE THAT YOU USED THE DEFAULT PASSWORD"
+	echo "# "
+	echo "# If you are testing this on localhost, you are probably fine."
+	echo "# If you are not, then PLEASE use a different password for safety."
+	echo "# If you have trouble coming up with a password, I have a utility "
+	echo "# at https://diceware.dmuth.org/ which will help you pick a password "
+	echo "# that can be remembered."
+	echo "# "
+fi
 
 echo "> "
 echo "> Press ENTER to run Splunk Health Check with the above settings, or ctrl-C to abort..."
