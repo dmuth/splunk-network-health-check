@@ -1,8 +1,12 @@
+
 # Splunk Network Health Check
 
 This app will monitor health of your Internet connection by pinging Google 
 (and a few other hosts) and creating nice graphs.  It is based on
 <a href="https://hub.docker.com/r/splunk/splunk/">Splunk's official Dockerfile</a>.
+
+This app uses <a href="https://github.com/dmuth/splunk-lab">Splunk Lab</a>, an open-source 
+app I built to effortlessly run Splunk in a Docker container.
 
 
 ## Quickest Installation
