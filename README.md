@@ -125,6 +125,13 @@ THAT is why I use HTTPS/SSL.  And why you should too on your apps.
 Splunk has its own license.  Please abide by it.
 
 
+## Credits
+
+- <a href="http://www.splunk.com/">Splunk</a>, for having such a kick-ass product!
+- <a href="http://patorjk.com/software/taag/#p=display&h=0&v=0&f=Standard&t=Splunk%20Lab">This text to ASCII art generator</a>, for the logo I used in the script.
+
+
+
 ## Additional Reading
 
 - <a href="https://github.com/dmuth/splunk-lab">Splunk Lab</a> - A more generic Dockerized version of Splunk which I developed
