@@ -17,5 +17,5 @@ echo "# Tagging container..."
 echo "# "
 docker tag splunk-network-health-check dmuth1/splunk-network-health-check
 
-SPLUNK_DEVEL=1 SPLUNK_BG=0 SPLUNK_PASSWORD=${SPLUNK_PASSWORD:-password1} ./go.sh
+SPLUNK_DEVEL=1 SPLUNK_PASSWORD=${SPLUNK_PASSWORD:-password1} ./go.sh
 

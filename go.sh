@@ -23,10 +23,9 @@ TARGETS="${TARGETS:-google.com,8.8.8.8,1.1.1.1}"
 SPLUNK_PASSWORD=${SPLUNK_PASSWORD:-password}
 SPLUNK_DATA=${SPLUNK_DATA:-splunk-data}
 SPLUNK_PORT=${SPLUNK_PORT:-8000}
-SPLUNK_BG=${SPLUNK_BG:-1}
 SPLUNK_DEVEL=${SPLUNK_DEVEL:-}
 DOCKER_NAME=${DOCKER_NAME:-splunk-network-health-check}
-DOCKER_RM=${DOCKER_RM:--1}
+DOCKER_RM=${DOCKER_RM:-1}
 DOCKER_CMD=${DOCKER_CMD:-}
 
 
@@ -89,21 +88,6 @@ then
 fi
 
 
-if test "$SPLUNK_DEVEL"
-then
-	#
-	# This wacky check for $SPLUNK_BG is here because setting it
-	# an empty string causes it to "default" to 1.  Silly bash!
-	#
-	if test "$SPLUNK_BG" -a "$SPLUNK_BG" != 0
-	then
-		echo "! "
-		echo "! You cannot specify both SPLUNK_DEVEL and SPLUNK_BG!"
-		echo "! "
-		exit 1
-	fi
-fi
-
 #
 # Catch targets with spaces in it (old style)
 #
@@ -138,11 +122,11 @@ then
 fi
 
 #
-# DOCKER_RM defaults to -1 so that it can be overridden.
-# Kinda silly, but that's how bash works.  
-# (But maybe there is a better way? Someone send me a PR!)
+# Only disable --rm if DOCKER_RM is set to "no".
+# We want --rm action by default, since we also have a default name
+# and don't want name conflicts.
 #
-if test "${DOCKER_RM}" == "-1" -o "${DOCKER_RM}" == 0
+if test "$DOCKER_RM" == "no"
 then
 	DOCKER_RM=""
 fi
@@ -154,7 +138,7 @@ else
 	CMD="${CMD} --restart unless-stopped "
 fi
 
-if test "$SPLUNK_BG" -a "$SPLUNK_BG" != 0
+if test ! "$SPLUNK_DEVEL"
 then
 	CMD="${CMD} -d "
 fi
@@ -227,9 +211,9 @@ fi
 
 if test "$DOCKER_RM"
 then
-	echo "# Removing container at exit?        YES"
+	echo "# Removing container at exit?        YES (Disable with \$DOCKER_RM=no)"
 else
-	echo "# Removing container at exit?        NO--container will automatically restart (Set with \$DOCKER_RM=1)"
+	echo "# Removing container at exit?        NO (Set with \$DOCKER_RM=1)"
 fi
 
 if test "$DOCKER_CMD"
@@ -237,14 +221,6 @@ then
 	echo "# Docker command injection:          ${DOCKER_CMD}"
 else
 	echo "# Docker command injection:          (Feel free to set with \$DOCKER_CMD)"
-fi
-
-echo "# "
-if test "$SPLUNK_BG" -a "$SPLUNK_BG" != 0
-then
-echo "# Background Mode?                   YES"
-else 
-echo "# Background Mode?                   NO (Set with \$SPLUNK_BG)"
 fi
 
 echo "# "
@@ -258,21 +234,19 @@ echo "# "
 echo "# Launching container..."
 echo "# "
 
-if test ! "$SPLUNK_BG" -o "$SPLUNK_BG" == 0
+if test ! "$SPLUNK_DEVEL"
 then
 	$CMD
 
+elif test ! "$DOCKER_NAME"
+then
+	ID=$($CMD)
+	SHORT_ID=$(echo $ID | cut -c-4)
+
 else
-	if test ! "$DOCKER_NAME"
-	then
-		ID=$($CMD)
-		SHORT_ID=$(echo $ID | cut -c-4)
+	ID=$($CMD)
+	SHORT_ID=$DOCKER_NAME
 
-	else
-		ID=$($CMD)
-		SHORT_ID=$DOCKER_NAME
-
-	fi
 	echo "#"
 	echo "# Running Docker container with ID: ${ID}"
 	echo "#"
