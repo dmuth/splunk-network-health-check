@@ -15,4 +15,8 @@ splunk-data/
 #
 splunk-app/default/inputs.conf
 
+#
+# Script generated prefs
+#
+user-prefs.conf
 

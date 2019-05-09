@@ -26,7 +26,6 @@ SPLUNK_PORT=${SPLUNK_PORT:-8000}
 SPLUNK_DEVEL=${SPLUNK_DEVEL:-}
 DOCKER_NAME=${DOCKER_NAME:-splunk-network-health-check}
 DOCKER_RM=${DOCKER_RM:-1}
-DOCKER_CMD=${DOCKER_CMD:-}
 
 
 if test "$SPLUNK_START_ARGS" != "--accept-license"
@@ -154,10 +153,21 @@ then
 	CMD="${CMD} -v $(pwd):/mnt "
 fi
 
-if test "$DOCKER_CMD"
-then
-	CMD="${CMD} ${DOCKER_CMD} "
-fi
+
+DOCKER_V="-v $(pwd)/user-prefs.conf:/opt/splunk/etc/users/admin/user-prefs/local/user-prefs.conf"
+CMD="${CMD} ${DOCKER_V}"
+
+#
+# Create our user-prefs.conf which will be pulled into Splunk at runtime
+# to set the default app.
+#
+cat > user-prefs.conf << EOF
+#
+# Created by Splunk Network Health Check
+#
+[general]
+default_namespace = Network-Monitor
+EOF
 
 
 IMAGE="dmuth1/splunk-network-health-check"
@@ -214,13 +224,6 @@ then
 	echo "# Removing container at exit?        YES (Disable with \$DOCKER_RM=no)"
 else
 	echo "# Removing container at exit?        NO (Set with \$DOCKER_RM=1)"
-fi
-
-if test "$DOCKER_CMD"
-then
-	echo "# Docker command injection:          ${DOCKER_CMD}"
-else
-	echo "# Docker command injection:          (Feel free to set with \$DOCKER_CMD)"
 fi
 
 echo "# "
