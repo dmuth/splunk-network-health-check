@@ -247,7 +247,7 @@ echo "# "
 echo "# Launching container..."
 echo "# "
 
-if test ! "$SPLUNK_DEVEL"
+if test "$SPLUNK_DEVEL"
 then
 	$CMD
 
