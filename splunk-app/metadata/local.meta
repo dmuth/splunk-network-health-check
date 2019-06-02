@@ -115,7 +115,7 @@ modtime = 1415161145.657524000
 
 [nav/default]
 version = 7.2.5
-modtime = 1559439987.401849000
+modtime = 1559445547.768444000
 
 [props/network-monitor/EXTRACT-target%2Cpackets_sent%2Cpackets_received]
 access = read : [ * ], write : [ * ]
@@ -140,11 +140,11 @@ modtime = 1535169487.988562000
 [views/network_health_report_small_screen]
 export = none
 owner = admin
-version = 7.1.1
-modtime = 1545349435.207166000
+version = 7.2.5
+modtime = 1559445570.366141000
 
 [views/host_comparison]
 export = none
 owner = admin
 version = 7.2.5
-modtime = 1559445463.867626000
+modtime = 1559445706.339525000

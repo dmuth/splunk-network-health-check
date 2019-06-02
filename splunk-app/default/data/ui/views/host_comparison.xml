@@ -1,0 +1,147 @@
+<form>
+  <label>Host Comparison</label>
+  <description>Compare packet loss and response time across different hosts</description>
+  <fieldset submitButton="false">
+    <input type="time" token="timespan" searchWhenChanged="true">
+      <label>Time Period</label>
+      <default>
+        <earliest>-60m@m</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+    <input type="dropdown" token="span" searchWhenChanged="true">
+      <label>Chart timespan</label>
+      <choice value="10s">10s</choice>
+      <choice value="15s">15s</choice>
+      <choice value="30s">30s</choice>
+      <choice value="1m">1m</choice>
+      <choice value="2m">2m</choice>
+      <choice value="5m">5m</choice>
+      <choice value="10m">10m</choice>
+      <choice value="1h">1h</choice>
+      <choice value="1d">1d</choice>
+      <default>1m</default>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <title>Response Time to All Hosts</title>
+      <chart>
+        <search>
+          <query>index=main sourcetype=network-monitor target=* time=* time&gt;0 
+| timechart span=$span$ max(time) AS Max, avg(time) AS Average perc90(time) AS "90th Percentile" by target</query>
+          <earliest>$timespan.earliest$</earliest>
+          <latest>$timespan.latest$</latest>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+        <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.axisTitleY2.visibility">collapsed</option>
+        <option name="charting.axisX.abbreviation">none</option>
+        <option name="charting.axisX.scale">linear</option>
+        <option name="charting.axisY.abbreviation">none</option>
+        <option name="charting.axisY.scale">linear</option>
+        <option name="charting.axisY2.abbreviation">none</option>
+        <option name="charting.axisY2.enabled">0</option>
+        <option name="charting.axisY2.scale">inherit</option>
+        <option name="charting.chart">line</option>
+        <option name="charting.chart.bubbleMaximumSize">50</option>
+        <option name="charting.chart.bubbleMinimumSize">10</option>
+        <option name="charting.chart.bubbleSizeBy">area</option>
+        <option name="charting.chart.nullValueMode">connect</option>
+        <option name="charting.chart.showDataLabels">minmax</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+        <option name="charting.chart.stackMode">default</option>
+        <option name="charting.chart.style">shiny</option>
+        <option name="charting.drilldown">none</option>
+        <option name="charting.layout.splitSeries">0</option>
+        <option name="charting.layout.splitSeries.allowIndependentYRanges">0</option>
+        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+        <option name="charting.legend.mode">standard</option>
+        <option name="charting.legend.placement">none</option>
+        <option name="charting.lineWidth">2</option>
+        <option name="height">449</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="trellis.enabled">1</option>
+        <option name="trellis.scales.shared">1</option>
+        <option name="trellis.size">medium</option>
+        <option name="trellis.splitBy">target</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Packet Loss to All Hosts</title>
+      <chart>
+        <search>
+          <query>index=main sourcetype=network-monitor target="*" transmitted=*
+| timechart span=$span$ sum(transmitted) AS transmitted sum(received) AS received by target
+| foreach "received: *" [ 
+   eval "received_&lt;&lt;MATCHSTR&gt;&gt;" = 'received: &lt;&lt;MATCHSTR&gt;&gt;'
+   | eval "transmitted_&lt;&lt;MATCHSTR&gt;&gt;" = 'transmitted: &lt;&lt;MATCHSTR&gt;&gt;'
+   | eval pct_&lt;&lt;MATCHSTR&gt;&gt;=( 1 - 'received_&lt;&lt;MATCHSTR&gt;&gt;' / 'transmitted_&lt;&lt;MATCHSTR&gt;&gt;' ) * 100
+]
+| fields pct*
+| timechart span=$span$ avg(pct*)
+| rename avg(pct_*) AS "*"</query>
+          <earliest>$timespan.earliest$</earliest>
+          <latest>$timespan.latest$</latest>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+        <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.axisTitleY2.visibility">collapsed</option>
+        <option name="charting.axisX.abbreviation">none</option>
+        <option name="charting.axisX.scale">linear</option>
+        <option name="charting.axisY.abbreviation">none</option>
+        <option name="charting.axisY.maximumNumber">100</option>
+        <option name="charting.axisY.minimumNumber">0</option>
+        <option name="charting.axisY.scale">linear</option>
+        <option name="charting.axisY2.abbreviation">none</option>
+        <option name="charting.axisY2.enabled">0</option>
+        <option name="charting.axisY2.scale">inherit</option>
+        <option name="charting.chart">line</option>
+        <option name="charting.chart.bubbleMaximumSize">50</option>
+        <option name="charting.chart.bubbleMinimumSize">10</option>
+        <option name="charting.chart.bubbleSizeBy">area</option>
+        <option name="charting.chart.nullValueMode">gaps</option>
+        <option name="charting.chart.showDataLabels">minmax</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+        <option name="charting.chart.stackMode">default</option>
+        <option name="charting.chart.style">shiny</option>
+        <option name="charting.drilldown">none</option>
+        <option name="charting.layout.splitSeries">0</option>
+        <option name="charting.layout.splitSeries.allowIndependentYRanges">0</option>
+        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+        <option name="charting.legend.mode">standard</option>
+        <option name="charting.legend.placement">none</option>
+        <option name="charting.lineWidth">2</option>
+        <option name="height">435</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="trellis.enabled">1</option>
+        <option name="trellis.scales.shared">1</option>
+        <option name="trellis.size">medium</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>About</title>
+      <html>
+      
+      Find this project online at <a href="https://github.com/dmuth/splunk-network-health-check">https://github.com/dmuth/splunk-network-health-check</a>
+      <br/>
+      <br/>
+      
+      
+      Run into any issues?  Please file a bug report <a href="https://github.com/dmuth/splunk-network-monitor/issues">here</a>.
+      <br/>
+      
+    </html>
+    </panel>
+  </row>
+</form>

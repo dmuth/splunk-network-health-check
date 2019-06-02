@@ -2,7 +2,8 @@
 
   <view name="short_term_network_report" default="true" />
   <view name="network_health_report_small_screen" />
-
+  <view name="host_comparison" />
+    
   <collection label="Extra">
 
     <view name="dashboards" />
