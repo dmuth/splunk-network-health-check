@@ -33,5 +33,6 @@ echo "# "
 echo "# Building container..."
 echo "# "
 docker build ${TARGET} -t splunk-network-health-check .
+docker tag splunk-network-health-check dmuth1/splunk-network-health-check 
 
 
