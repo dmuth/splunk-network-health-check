@@ -151,6 +151,15 @@ if test "$SPLUNK_DEVEL"
 then
 	CMD="${CMD} -it"
 	CMD="${CMD} -v $(pwd):/mnt "
+
+#
+# In devel mode, we'll mount the splunk-lab/ directory to the app directory
+# here, and the entrypoint.sh script will create the local/ symlink
+# (with build.sh removing said symlink before building any images)
+#
+CMD="${CMD} -v $(pwd)/splunk-app:/opt/splunk/etc/apps/Network-Monitor "
+CMD="${CMD} -e SPLUNK_DEVEL=${SPLUNK_DEVEL} "
+
 fi
 
 

@@ -7,13 +7,19 @@
 #
 # Our data from the container
 # 
-data/
 splunk-data/
 
 #
 # Our inputs.conf is machine-generated.
 #
 splunk-app/default/inputs.conf
+
+#
+# This is a symlink for development
+#
+splunk-app/local
+
+
 
 #
 # Script generated prefs

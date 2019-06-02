@@ -39,8 +39,7 @@ RUN chmod +x /entrypoint.sh
 #
 # Copy in our application
 #
-COPY splunk-app/ /app/
-RUN ln -s /app /opt/splunk/etc/apps/Network-Monitor
+COPY splunk-app/ /opt/splunk/etc/apps/Network-Monitor
 
 #
 # Expose Splunk web

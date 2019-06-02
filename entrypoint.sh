@@ -98,6 +98,24 @@ popd > /dev/null
 
 
 #
+# If we're running in devel mode, link local to default so that any
+# changes we make to the app in Splunk go straight into default and
+# I don't have to move them by hand.
+#
+if test "$SPLUNK_DEVEL"
+then
+	pushd /opt/splunk/etc/apps/Network-Monitor >/dev/null
+	if test ! -e local
+	then
+		echo "# "
+		echo "# Creating symlink to local/ in devel mode..."
+		echo "# "
+		ln -sfv default local
+	fi
+	popd > /dev/null
+fi
+
+#
 # Start Splunk
 #
 /opt/splunk/bin/splunk start --accept-license
