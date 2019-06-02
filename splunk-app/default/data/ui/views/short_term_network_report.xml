@@ -143,6 +143,7 @@
   </row>
   <row>
     <panel>
+      <title>About</title>
       <html>
       
       Find this project online at <a href="https://github.com/dmuth/splunk-network-health-check">https://github.com/dmuth/splunk-network-health-check</a>
