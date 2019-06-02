@@ -5,6 +5,11 @@
 *.swp
 
 #
+# OS/X file
+#
+.DS_Store
+
+#
 # Our data from the container
 # 
 splunk-data/
