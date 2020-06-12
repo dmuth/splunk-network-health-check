@@ -24,7 +24,7 @@ SPLUNK_PASSWORD=${SPLUNK_PASSWORD:-password1}
 SPLUNK_DATA=${SPLUNK_DATA:-splunk-data}
 SPLUNK_PORT=${SPLUNK_PORT:-8000}
 SPLUNK_DEVEL=${SPLUNK_DEVEL:-}
-SPLUNK_ETC=${SPLUNK_ETC:-no}
+ETC_HOSTS=${ETC_HOSTS:-no}
 DOCKER_NAME=${DOCKER_NAME:-splunk-network-health-check}
 DOCKER_RM=${DOCKER_RM:-1}
 
@@ -108,11 +108,11 @@ esac
 #
 # Sanity check
 #
-if test "$SPLUNK_ETC" != "no"
+if test "$ETC_HOSTS" != "no"
 then
-	if test ! -f ${SPLUNK_ETC}
+	if test ! -f ${ETC_HOSTS}
 	then
-		echo "! Unable to read file '${SPLUNK_ETC}' specfied in \$SPLUNK_ETC!"
+		echo "! Unable to read file '${ETC_HOSTS}' specfied in \$ETC_HOSTS!"
 		exit 1
 	fi
 fi
@@ -151,9 +151,9 @@ else
 	CMD="${CMD} --restart unless-stopped "
 fi
 
-if test "${SPLUNK_ETC}" != "no"
+if test "${ETC_HOSTS}" != "no"
 then
-        CMD="$CMD -v $(pwd)/${SPLUNK_ETC}:/etc/hosts.extra "
+        CMD="$CMD -v $(pwd)/${ETC_HOSTS}:/etc/hosts.extra "
 fi
 
 if test ! "$SPLUNK_DEVEL"
@@ -254,11 +254,11 @@ else
 	echo "# Removing container at exit?        NO (Set with \$DOCKER_RM=1)"
 fi
 
-if test "$SPLUNK_ETC" != "no"
+if test "$ETC_HOSTS" != "no"
 then
-	echo "# /etc/hosts addition:               ${SPLUNK_ETC} (Disable with \$SPLUNK_ETC=no)"
+	echo "# /etc/hosts addition:               ${ETC_HOSTS} (Disable with \$ETC_HOSTS=no)"
 else
-	echo "# /etc/hosts addition:               NO (Set with \$SPLUNK_ETC=filename)"
+	echo "# /etc/hosts addition:               NO (Set with \$ETC_HOSTS=filename)"
 fi
 
 
