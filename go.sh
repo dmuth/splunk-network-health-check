@@ -24,6 +24,7 @@ SPLUNK_PASSWORD=${SPLUNK_PASSWORD:-password1}
 SPLUNK_DATA=${SPLUNK_DATA:-splunk-data}
 SPLUNK_PORT=${SPLUNK_PORT:-8000}
 SPLUNK_DEVEL=${SPLUNK_DEVEL:-}
+SPLUNK_ETC=${SPLUNK_ETC:-no}
 DOCKER_NAME=${DOCKER_NAME:-splunk-network-health-check}
 DOCKER_RM=${DOCKER_RM:-1}
 
@@ -105,6 +106,19 @@ esac
 
 
 #
+# Sanity check
+#
+if test "$SPLUNK_ETC" != "no"
+then
+	if test ! -f ${SPLUNK_ETC}
+	then
+		echo "! Unable to read file '${SPLUNK_ETC}' specfied in \$SPLUNK_ETC!"
+		exit 1
+	fi
+fi
+
+
+#
 # Start forming our command
 #
 CMD="docker run \
@@ -135,6 +149,11 @@ then
 	CMD="${CMD} --rm"
 else 
 	CMD="${CMD} --restart unless-stopped "
+fi
+
+if test "${SPLUNK_ETC}" != "no"
+then
+        CMD="$CMD -v $(pwd)/${SPLUNK_ETC}:/etc/hosts.extra "
 fi
 
 if test ! "$SPLUNK_DEVEL"
@@ -234,6 +253,14 @@ then
 else
 	echo "# Removing container at exit?        NO (Set with \$DOCKER_RM=1)"
 fi
+
+if test "$SPLUNK_ETC" != "no"
+then
+	echo "# /etc/hosts addition:               ${SPLUNK_ETC} (Disable with \$SPLUNK_ETC=no)"
+else
+	echo "# /etc/hosts addition:               NO (Set with \$SPLUNK_ETC=filename)"
+fi
+
 
 echo "# "
 

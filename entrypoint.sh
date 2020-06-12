@@ -96,6 +96,14 @@ done
 
 popd > /dev/null
 
+#
+# Do we have an /etc/hosts addition?
+#
+if test -f /etc/hosts.extra
+then
+        echo "We found /etc/hosts.extra, concatenating it into /etc/hosts..."
+        cat /etc/hosts.extra >> /etc/hosts
+fi
 
 #
 # If we're running in devel mode, link local to default so that any
