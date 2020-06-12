@@ -55,6 +55,7 @@ DNS is flaky, it won't impact either those, and those two IP addresses are owned
 
 - `--restart unless-stopped` - Causes this container to restart if killed Docker is restarted. **This is highly recommended.**
 - `-e "TARGETS=google.com,cnn.com,8.8.8.8,1.1.1.1"` - Specify hosts to ping
+- `-e ETC_HOSTS=hosts.txt` - Specify a hosts file to append to `/etc/hosts`.  Useful for when you want to give names to local devices to ping, such as cameras.
 - `-e SPLUNK_PASSWORD=password` - Set a non-default password. You WILL do this if you run this in a production environment.
 
 
