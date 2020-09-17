@@ -140,11 +140,11 @@ modtime = 1535169487.988562000
 [views/network_health_report_small_screen]
 export = none
 owner = admin
-version = 7.2.5
-modtime = 1559445570.366141000
+version = 8.0.1
+modtime = 1600382135.603927000
 
 [views/host_comparison]
 export = none
 owner = admin
-version = 7.2.5
-modtime = 1559445812.886884000
+version = 8.0.1
+modtime = 1600382626.545457000

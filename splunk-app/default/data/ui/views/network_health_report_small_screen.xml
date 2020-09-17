@@ -33,6 +33,16 @@
       <selectFirstChoice>true</selectFirstChoice>
       <default>8.8.8.8</default>
     </input>
+    <input type="multiselect" token="fields" searchWhenChanged="true">
+      <label>Fields to Chart for Latency</label>
+      <choice value="max(time) AS Max">Max Time</choice>
+      <choice value="avg(time) AS Average">Avg Time</choice>
+      <choice value="min(time) AS Min">Min Time</choice>
+      <choice value="perc10(time) AS &quot;10th Percentile&quot;">10th Percentile</choice>
+      <choice value="perc90(time) AS &quot;90th Percentile&quot;">90th Percentile</choice>
+      <delimiter> </delimiter>
+      <initialValue>perc90(time) AS "90th Percentile",min(time) AS Min,max(time) AS Max</initialValue>
+    </input>
   </fieldset>
   <row>
     <panel>
@@ -78,7 +88,7 @@
       <chart>
         <search>
           <query>index=main sourcetype=network-monitor target=$target$ time=* time&gt;0 
-| timechart span=$span$ max(time) AS Max, avg(time) AS Average perc90(time) AS "90th Percentile"</query>
+| timechart span=$span$ $fields$</query>
           <earliest>$timespan.earliest$</earliest>
           <latest>$timespan.latest$</latest>
         </search>
