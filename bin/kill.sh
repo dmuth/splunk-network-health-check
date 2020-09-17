@@ -4,6 +4,6 @@
 set -e
 
 docker kill splunk-network-health-check || true
-docker rm splunk-network-health-check
+docker rm splunk-network-health-check || true
 
 
