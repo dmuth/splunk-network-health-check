@@ -11,7 +11,7 @@ app I built to effortlessly run Splunk in a Docker container.
 
 ## Quickest Installation
 
-`SPLUNK_START_ARGS=--accept-license bash <(curl -s https://raw.githubusercontent.com/dmuth/splunk-network-health-check/master/go.sh)`
+`bash <(curl -s https://raw.githubusercontent.com/dmuth/splunk-network-health-check/master/go.sh)`
 
 Follow the on-screen instructions for configuration Splunk Network Health Check 
 and you should be running in no time!
@@ -24,7 +24,6 @@ Here are the Docker commands to run it and view the output:
 
 ```
 docker run --name splunk-network-health-check -d --rm -p 8000:8000 \
-	-e SPLUNK_START_ARGS=--accept-license \
 	-v $(pwd)/splunk-data:/opt/splunk/var/lib/splunk/defaultdb \
 	dmuth1/splunk-network-health-check
 docker logs -f splunk-network-health-check
