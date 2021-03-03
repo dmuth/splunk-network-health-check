@@ -101,6 +101,7 @@ There are some helper scripts in `bin/` which make the process less painful:
    - When exited, the container will end.
 - `bin/kill.sh` - Stop the container and kill it.
 - `bin/logs.sh` - Tail the logs of the currently running container
+- `bin/clean.sh` - Remove `splunk-data/` directory.  This will remove all indexed data (pings and latency) from Splunk!
 - `bin/push.sh` - Push the image up to Docker Hub
 
 
