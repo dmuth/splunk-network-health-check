@@ -126,8 +126,17 @@ CMD="docker run \
 	-p ${SPLUNK_PORT}:8000 \
 	-e TARGETS=${TARGETS} \
 	-e SPLUNK_PASSWORD=${SPLUNK_PASSWORD} \
-	-v $(pwd)/${SPLUNK_DATA}:/data 
 	"
+
+#
+# If SPLUNK_DATA is no, we're not exporting it. 
+# Useful for re-importing everything every time.
+#
+if test "${SPLUNK_DATA}" != "no"
+then
+	CMD="$CMD -v $(pwd)/${SPLUNK_DATA}:/data "
+fi
+
 
 if test "${DOCKER_NAME}"
 then
@@ -239,7 +248,13 @@ echo "# Login/password:                    admin/${SPLUNK_PASSWORD} (Change with
 echo "# "
 echo "# Targets to ping:                   ${TARGETS} (Override with \$TARGETS)" 
 echo "# "
-echo "# Indexed data will be stored in:    ${SPLUNK_DATA} (Change with \$SPLUNK_DATA)"
+if test "${SPLUNK_DATA}" != "no"
+then
+	echo "# Indexed data will be stored in:    ${SPLUNK_DATA} (Change with \$SPLUNK_DATA, disable with SPLUNK_DATA=no)"
+else
+	echo "# Indexed data WILL NOT persist.     (Change by setting \$SPLUNK_DATA)"
+fi
+
 if test "$DOCKER_NAME"
 then
 	echo "# Docker container name:             ${DOCKER_NAME}"
