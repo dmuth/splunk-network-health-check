@@ -116,6 +116,17 @@ it will start up automatically.  I am unclear on if this is something that can b
 
 ## FAQ
 
+### How do I get a valid SSL cert on localhost?
+
+Yes, you can! 
+
+First, install <a href="https://github.com/FiloSottile/mkcert">mkcert</a> and then run `mkcert -install && mkcert localhost 127.0.0.1 ::1` to generate a local CA and a cert/key combo for localhost.
+
+Then, when you run Splunk Lab, set the environment variables `SSL_KEY` and `SSL_CERT` and those files will be pulled into Splunk Lab.
+
+Example: `SSL_KEY=./localhost.key SSL_CERT=./localhost.pem ./go.sh`
+
+
 ### Why does the Splunk web interface run with HTTPS enabled?
 
 Because one day, someone somewhere will install this app on a machine which faces

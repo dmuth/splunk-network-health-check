@@ -31,3 +31,7 @@ splunk-app/local
 #
 user-prefs.conf
 
+# Don't check in keys and certs
+localhost.key
+localhost.pem
+
