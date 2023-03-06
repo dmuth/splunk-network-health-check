@@ -35,3 +35,6 @@ user-prefs.conf
 localhost.key
 localhost.pem
 
+# Don't check in our built Dockerfile
+Dockerfile
+

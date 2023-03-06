@@ -3,6 +3,9 @@
 # Errors are fatal
 set -e
 
+# Load our variables
+. ./bin/lib.sh
+
 TARGET=""
 
 function print_syntax() {
@@ -29,10 +32,17 @@ fi
 pushd $(dirname $0) >/dev/null
 cd ..
 
+cat Dockerfile.in | sed -e s/%SPLUNK_VERSION%/${SPLUNK_VERSION}/ > Dockerfile
+
 echo "# "
 echo "# Building container..."
 echo "# "
-docker build ${TARGET} -t splunk-network-health-check .
-docker tag splunk-network-health-check dmuth1/splunk-network-health-check 
+docker build ${TARGET} \
+    -t splunk-network-health-check .
+
+docker tag splunk-network-health-check dmuth1/splunk-network-health-check
+docker tag splunk-network-health-check dmuth1/splunk-network-health-check:latest
+docker tag splunk-network-health-check dmuth1/splunk-network-health-check:${SPLUNK_VERSION_MAJOR}
+docker tag splunk-network-health-check dmuth1/splunk-network-health-check:${SPLUNK_VERSION}
 
 

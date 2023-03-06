@@ -22,7 +22,7 @@ RUN make
 #
 # Base this on the Splunk Lab container
 #
-FROM dmuth1/splunk-lab
+FROM dmuth1/splunk-lab:%SPLUNK_VERSION%
 
 #
 # Copy our hacked ping.
